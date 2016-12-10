@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCashRegister.DAL
 {
-    public class SimpleCashRegisterException : Exception { }
+    public class SimpleCashRegisterException : ApplicationException { }
     public class EntityAlreadyExistsException : SimpleCashRegisterException { }
     public class EntityNotFoundException : SimpleCashRegisterException { }
 }

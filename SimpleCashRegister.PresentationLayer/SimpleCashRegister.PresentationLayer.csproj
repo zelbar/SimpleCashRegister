@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{75BE100F-677E-4B20-B05B-C94200BA4115}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{F7C217E5-E893-4F05-9F80-3A9B34BE9FB6}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimpleCashRegister</RootNamespace>
-    <AssemblyName>SimpleCashRegister</AssemblyName>
+    <RootNamespace>SimpleCashRegister.PresentationLayer</RootNamespace>
+    <AssemblyName>SimpleCashRegister.PresentationLayer</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,18 +40,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Commands\AddNewArticleCommand.cs" />
+    <Compile Include="Commands\ArticleCommand.cs" />
+    <Compile Include="Parsers\ArticleParser.cs" />
+    <Compile Include="Commands\CommandRegistry.cs" />
+    <Compile Include="Commands\DeleteArticleCommand.cs" />
+    <Compile Include="Commands\HelpCommand.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Parsers\IParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\IView.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleCashRegister.PresentationLayer\SimpleCashRegister.PresentationLayer.csproj">
-      <Project>{f7c217e5-e893-4f05-9f80-3a9b34be9fb6}</Project>
-      <Name>SimpleCashRegister.PresentationLayer</Name>
+    <ProjectReference Include="..\SimpleCashRegister.Controllers\SimpleCashRegister.Controllers.csproj">
+      <Project>{ccfb68d4-a41e-459e-86ce-d54dfe8049e0}</Project>
+      <Name>SimpleCashRegister.Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleCashRegister.Model\SimpleCashRegister.Model.csproj">
+      <Project>{e0d3ea9e-46db-4d5a-aa16-065f224c0ec9}</Project>
+      <Name>SimpleCashRegister.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
