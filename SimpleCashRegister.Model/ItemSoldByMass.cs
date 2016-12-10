@@ -9,7 +9,7 @@ namespace SimpleCashRegister.Model
 {
     public class ItemSoldByMass : Item
     {
-        public decimal Mass { get; set; }
+        public decimal Mass { get; set; } = 1;
 
         public override decimal GetCost()
         {
