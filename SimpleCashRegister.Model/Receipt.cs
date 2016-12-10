@@ -20,7 +20,7 @@ namespace SimpleCashRegister.Model
         }
 
         public List<Item> Items { get; set; }
-        public DateTime DateTimeIssued { get; }
+        public DateTime DateTimeIssued { get; set; }
         public decimal TotalCost
         {
             get
