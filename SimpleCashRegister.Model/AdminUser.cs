@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace SimpleCashRegister.Model
 {
-    class AdminUser : User
+    public class AdminUser : User
     {
+        public AdminUser() : base() { }
         public AdminUser(string username, string password) : base(username, password)
         {
         }

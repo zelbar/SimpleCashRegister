@@ -12,11 +12,32 @@ namespace SimpleCashRegister.ConsoleAppRunner
     {
         static void Main(string[] args)
         {
+            var usersPersister = new DAL.Persisters.UserPersister("Users.xml");
+            var usersRepo = new DAL.Repositories.UserRepository(usersPersister);
+
             var articlesPersister = new DAL.Persisters.ArticlePersister("Articles.xml");
             var articlesRepo = new DAL.Repositories.ArticleRepository(articlesPersister);
             
             var receiptsPersister = new DAL.Persisters.ReceiptPersister("Receipts.xml");
             var receiptsRepo = new DAL.Repositories.ReceiptRepository(receiptsPersister);
+
+            // Adding users
+            User admin;
+            try
+            {
+                admin = usersRepo.GetById("admin");
+            }
+            catch(EntityNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+                var userToAdd = new AdminUser("admin", "admin")
+                {
+                    DisplayName = "Zvonimir Vanjak"
+                };
+
+                usersRepo.Add(userToAdd);
+                Console.WriteLine("User " + userToAdd.DisplayName + " added");
+            }
 
             // Adding articles
             var articlesToAdd = new List<Article>

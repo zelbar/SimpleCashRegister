@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SimpleCashRegister.Model
 {
-    class User : Entity<Guid>
+    [Serializable]
+    [XmlInclude(typeof(AdminUser))]
+    [XmlInclude(typeof(CashierUser))]
+    public class User : Entity<string>
     {
-        public User(string username, string password) : base(new Guid())
+        private static readonly string UndefinedUserId = "new";
+        public User() : base(UndefinedUserId) { }
+        public User(string username, string password) : base(username)
         {
             Username = username;
             PasswordHash = password.GetHashCode();
@@ -16,7 +22,6 @@ namespace SimpleCashRegister.Model
         }
 
         public string DisplayName { get; set; }
-        public string Username { get; set; }
         public int PasswordHash { get; set; }
         public DateTime DateTimeCreated { get; }
     }

@@ -16,14 +16,15 @@ namespace SimpleCashRegister.DAL.Repositories
             _persister = persister;
         }
 
-        private readonly XmlPersister<TEntity> _persister;
+        protected readonly XmlPersister<TEntity> _persister;
 
-        public TId Add(TEntity item)
+        public virtual TId Add(TEntity item)
         {
             _persister.Load();
             var list = _persister.GetList();
+            var existing = list.FirstOrDefault(x => Equals(x.Id, item.Id));
 
-            if (list.FirstOrDefault(x => Equals(x.Id, item.Id)) != null)
+            if (existing != null)
             {
                 throw new EntityAlreadyExistsException();
             }
@@ -33,7 +34,7 @@ namespace SimpleCashRegister.DAL.Repositories
             return item.Id;
         }
 
-        public void Delete(TId id)
+        public virtual void Delete(TId id)
         {
             _persister.Load();
             var list = _persister.GetList();
@@ -48,7 +49,7 @@ namespace SimpleCashRegister.DAL.Repositories
             _persister.Save();
         }
 
-        public void Edit(TEntity item)
+        public virtual void Edit(TEntity item)
         {
             _persister.Load();
             var list = _persister.GetList();
@@ -64,7 +65,7 @@ namespace SimpleCashRegister.DAL.Repositories
             _persister.Save();
         }
 
-        public TEntity GetById(TId id)
+        public virtual TEntity GetById(TId id)
         {
             _persister.Load();
             var list = _persister.GetList();
@@ -78,7 +79,7 @@ namespace SimpleCashRegister.DAL.Repositories
             return itemToGet;
         }
 
-        public List<TEntity> GetAll()
+        public virtual List<TEntity> GetAll()
         {
             _persister.Load();
             var list = _persister.GetList();
