@@ -16,7 +16,6 @@ namespace SimpleCashRegister.Model
         public User() : base(UndefinedUserId) { }
         public User(string username, string password) : base(username)
         {
-            Username = username;
             PasswordHash = password.GetHashCode();
             DateTimeCreated = DateTime.Now;
         }
