@@ -30,7 +30,7 @@ namespace SimpleCashRegister.Model
         {
             get
             {
-                return Price * 100 * VatRate;
+                return Price * (1 + VatRate);
             }
         }
     }
