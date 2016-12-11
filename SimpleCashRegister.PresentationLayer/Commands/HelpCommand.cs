@@ -8,36 +8,34 @@ namespace SimpleCashRegister.PresentationLayer.Commands
 {
     public class HelpCommand : ICommand
     {
+        public HelpCommand(Dictionary<string, ICommand> commands)
+        {
+            _commands = commands;
+        }
+
+        private readonly Dictionary<string, ICommand> _commands;
+
         public bool AdminOnly { get { return false; } }
 
         public string Name { get { return "help"; } }
         public string Description { get { return "Displays all the available commands and their parameters"; } }
 
-        public void Execute()
+        public void Execute(string[] args)
         {
-            var line = Console.ReadLine();
-            var registry = new List<ICommand>();
-
-            //if (args.Length == 1)
-            //{
-                foreach (var command in registry)
-                {
-                    Console.WriteLine("{0}\n\t{1}", command.Name, command.Description);
-                }
-            //}
-            //else
+            Console.WriteLine("HELP");
+            if (args.Length <= 1)
             {
-                var command = registry.FirstOrDefault(x => x.Name == line);
-                if (command == null)
-                    command = registry.FirstOrDefault(x => x.Name.Contains(line));
-
-                if (command == null)
+                foreach (var command in _commands)
                 {
-                    Console.WriteLine("No such command found.");
+                    Console.WriteLine("{0}\n\t{1}", command.Key, command.Value.Description);
                 }
-                else
+            }
+            else
+            {
+                ICommand cmd;
+                if (_commands.TryGetValue(args[1], out cmd))
                 {
-                    Console.WriteLine("{0}: {1}", command.Name, command.Description);
+                    Console.WriteLine("{0}\n\t{1}", cmd.Name, cmd.Description);
                 }
             }
         }

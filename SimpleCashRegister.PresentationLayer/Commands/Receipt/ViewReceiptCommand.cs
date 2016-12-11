@@ -22,7 +22,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
 
         public string Name { get { return "view-receipt"; } }
 
-        public void Execute()
+        public void Execute(string[] args)
         {
             Console.WriteLine("Enter receipt id: ");
             var line = Console.ReadLine();

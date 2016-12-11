@@ -8,7 +8,7 @@ using SimpleCashRegister.PresentationLayer.Parsers;
 
 namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
 {
-    class DeleteReceiptCommand : ReceiptCommand, ICommand
+    public class DeleteReceiptCommand : ReceiptCommand, ICommand
     {
         public DeleteReceiptCommand(ArticleServices articleServices, ReceiptServices receiptServices) 
             : base(articleServices, receiptServices)
@@ -21,7 +21,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
 
         public string Name { get { return "delete-receipt"; } }
 
-        public void Execute()
+        public void Execute(string[] args)
         {
             Console.WriteLine("Enter receipt id: ");
             var line = Console.ReadLine();

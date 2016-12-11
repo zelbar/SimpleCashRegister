@@ -78,7 +78,7 @@ namespace SimpleCashRegister.Services
                 else
                     _asAdmin = false;
 
-                Console.WriteLine("Successful login!\nWelcome, {0}\n", user.DisplayName);
+                Console.WriteLine("Successful login!\nWelcome, {0} ({1})\n", user.DisplayName, (user is AdminUser) ? "Admin" : "Cashier");
                 success = true;
             }
             else

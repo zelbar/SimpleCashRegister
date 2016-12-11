@@ -16,21 +16,18 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
         string ICommand.Name { get { return "edit-article"; } }
         string ICommand.Description { get { return "Edits an existing article."; } }
 
-        protected override void ReadLine()
+        void ICommand.Execute(string[] args)
         {
             Console.WriteLine("\nEDIT EXISTING ARTICLE");
             Console.WriteLine("Enter article details in this format: id;q(antity)|m(ass);name;price;vatrate");
             Console.WriteLine("eg. 10;q;Vodka 0.3l;42,36;0,25");
-            base.ReadLine();
-        }
 
-        void ICommand.Execute()
-        {
+            var line = Console.ReadLine();
             var parser = new ArticleParser();
             Model.Article article = null;
             try
             {
-                article = parser.Parse(_line);
+                article = parser.Parse(line);
             }
             catch(ParseException)
             {

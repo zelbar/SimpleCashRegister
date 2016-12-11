@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -51,21 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleCashRegister.Controllers\SimpleCashRegister.Services.csproj">
-      <Project>{ccfb68d4-a41e-459e-86ce-d54dfe8049e0}</Project>
-      <Name>SimpleCashRegister.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SimpleCashRegister.DAL\SimpleCashRegister.DataAccessLayer.csproj">
-      <Project>{04113a55-dd06-4a71-88e7-b6b14695563b}</Project>
-      <Name>SimpleCashRegister.DataAccessLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SimpleCashRegister.Model\SimpleCashRegister.Model.csproj">
-      <Project>{e0d3ea9e-46db-4d5a-aa16-065f224c0ec9}</Project>
-      <Name>SimpleCashRegister.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SimpleCashRegister.PresentationLayer\SimpleCashRegister.PresentationLayer.csproj">
-      <Project>{f7c217e5-e893-4f05-9f80-3a9b34be9fb6}</Project>
-      <Name>SimpleCashRegister.PresentationLayer</Name>
+    <ProjectReference Include="..\SimpleCashRegister\SimpleCashRegister.csproj">
+      <Project>{75be100f-677e-4b20-b05b-c94200ba4115}</Project>
+      <Name>SimpleCashRegister</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

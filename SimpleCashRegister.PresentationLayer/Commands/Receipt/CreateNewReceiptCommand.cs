@@ -21,7 +21,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
 
         public string Name { get { return "new-receipt"; } }
 
-        public void Execute()
+        public void Execute(string [] args)
         {
             var receipt = new Model.Receipt();
             var receiptCommands = new ReceiptItemCommands(_articleServices, receipt);

@@ -16,7 +16,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
 
         public string Name { get { return "list-articles"; } }
 
-        public void Execute()
+        public void Execute(string[] args)
         {
             var articleView = new ArticleView();
             foreach (var article in _articleServices.GetAllArticles())

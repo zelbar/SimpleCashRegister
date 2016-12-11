@@ -20,7 +20,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Report
 
         public string Name { get { return "bestselling-report"; } }
 
-        public void Execute()
+        public void Execute(string[] args)
         {
             Console.Write("How many articles to list? ");
             int n;

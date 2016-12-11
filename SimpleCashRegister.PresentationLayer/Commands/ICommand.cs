@@ -11,6 +11,6 @@ namespace SimpleCashRegister.PresentationLayer.Commands
         string Name { get; }
         string Description { get; }
         bool AdminOnly { get; }
-        void Execute();
+        void Execute(string[] args);
     }
 }

@@ -19,7 +19,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Account
 
         public string Name { get { return "login"; } }
 
-        public void Execute()
+        public void Execute(string[] args)
         {
             Console.WriteLine("Please provide login details: username password");
             bool success = false;

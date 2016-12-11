@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SimpleCashRegister.PresentationLayer.Views;
 
 namespace SimpleCashRegister.PresentationLayer.Commands.Report
 {
-    class DailyReportCommand : ReportCommand, ICommand
+    public class DailyReportCommand : ReportCommand, ICommand
     {
         public DailyReportCommand(ReportServices reportServices) : base(reportServices)
         {
@@ -21,9 +22,9 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Report
 
         public string Name { get { return "daily-report"; } }
 
-        public void Execute()
+        public void Execute(string[] args)
         {
-            Console.WriteLine("DAILY REPORT");
+            Console.WriteLine("DAILY REPORT\nEnter date for which items should be displayed: ");
             var line = Console.ReadLine();
             var parser = new DateParser();
 
@@ -34,10 +35,15 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Report
             }
             catch(ParseException)
             {
-                Console.Error.WriteLine("Invalid date input.");
+                Console.Error.WriteLine("Invalid date input. Using today's date!");
+                dt = DateTime.Now;
             }
-
-            var dailyReport = _reportServices.DailyReport(dt);
+            finally
+            {
+                var dailyReport = _reportServices.DailyReport(dt);
+                var view = new DailyReportView();
+                Console.WriteLine(view.Display(dailyReport));
+            }
         }
     }
 }

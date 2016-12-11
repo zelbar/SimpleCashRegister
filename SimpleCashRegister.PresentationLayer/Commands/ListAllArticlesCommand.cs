@@ -17,7 +17,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands
         string ICommand.Name { get { return "list-articles"; } }
         string ICommand.Description { get { return "List all articles."; } }
 
-        void ICommand.Execute()
+        void ICommand.Execute(string[] args)
         {
             var view = new ArticleView();
             var articles = _articleServices.GetAllArticles();

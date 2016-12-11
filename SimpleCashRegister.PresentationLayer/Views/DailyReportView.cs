@@ -18,8 +18,8 @@ namespace SimpleCashRegister.PresentationLayer.Views
 
             foreach(var item in dailyReport.Receipts)
             {
-                sb.AppendFormat("{0}: {1} Articles, {2} Total\n", 
-                    item.DateTimeIssued.TimeOfDay, item.Items.Count, item.TotalCost);
+                sb.AppendFormat("{0}: {1} Articles, Total: {2}\n", 
+                    item.DateTimeIssued.TimeOfDay, item.Items.Count, item.TotalCost.ToString("C"));
             }
 
             var rv = sb.ToString();

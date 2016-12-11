@@ -7,7 +7,7 @@ using SimpleCashRegister.Services;
 
 namespace SimpleCashRegister.PresentationLayer.Commands.Article
 {
-    class DeleteArticleCommand : ArticleCommand, ICommand
+    public class DeleteArticleCommand : ArticleCommand, ICommand
     {
         public DeleteArticleCommand(ArticleServices articleServices) : base(articleServices)
         {
@@ -19,12 +19,16 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
 
         public string Name { get { return "delete-article"; } }
 
-        public void Execute()
+        public void Execute(string[] args)
         {
+            Console.WriteLine("\nDELETE ARTICLE");
+            Console.WriteLine("Enter article id: ");
+
+            var line = Console.ReadLine();
             int id = default(int);
             try
             {
-                id = Convert.ToInt32(_line);
+                id = Convert.ToInt32(line);
             }
             catch (FormatException)
             {

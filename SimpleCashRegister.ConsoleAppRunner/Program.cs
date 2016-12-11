@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SimpleCashRegister.Model;
-using SimpleCashRegister.DataAccessLayer;
-using SimpleCashRegister.DataAccessLayer.Persisters;
-using SimpleCashRegister.DataAccessLayer.Repositories;
-using SimpleCashRegister.Services;
-using SimpleCashRegister.PresentationLayer;
-using SimpleCashRegister.PresentationLayer.Commands;
-using SimpleCashRegister.PresentationLayer.Commands.Account;
-using SimpleCashRegister.PresentationLayer.Commands.Article;
-using SimpleCashRegister.Exceptions;
+﻿using SimpleCashRegister;
 
 namespace SimpleCashRegister.ConsoleAppRunner
 {
@@ -17,39 +6,10 @@ namespace SimpleCashRegister.ConsoleAppRunner
     {
         static void Main(string[] args)
         {
-            var userPersister = new UserPersister("Users.xml");
-            var articlePersister = new ArticlePersister("Articles.xml");
-            var receiptPersister = new ReceiptPersister("Receipts.xml");
 
-            var userRepository = new UserRepository(userPersister);
-            var articleRepository = new ArticleRepository(articlePersister);
-            var receiptRepository = new ReceiptRepository(receiptPersister);
+            var app = new Application();
+            app.Run();
 
-            var accountServices = new AccountServices(userRepository);
-            var articleServices = new ArticleServices(articleRepository);
-            var receiptServices = new ReceiptServices(articleRepository, receiptRepository);
-            var reportServices = new ReportServices(articleRepository, receiptRepository);
-
-            IEnumerable<ICommand> commandRepository = new List<ICommand>()
-            {
-
-            };
-
-            // Make sure to create the admin user if not present.
-            User admin;
-            try
-            {
-                admin = userRepository.GetById("admin");
-            }
-            catch (EntityNotFoundException)
-            {
-                accountServices.CreateUser("admin", "admin", true);
-            }
-
-            // Authenticate
-            ICommand cmd = new LoginAccountCommand(accountServices);
-            cmd.Execute();
-            
             //// Adding articles
             //var articlesToAdd = new List<Article>
             //{
@@ -102,16 +62,7 @@ namespace SimpleCashRegister.ConsoleAppRunner
             //var receiptToAdd = receiptFacotry.Create(items);
 
             //receiptRepository.Add(receiptToAdd);
-
-
-            // THIS SHOULD GO TO THE RECEIPT COMMAND!
-            var receiptView = new PresentationLayer.Views.ReceiptView();
-            foreach (var receipt in receiptRepository.GetAll())
-            {
-                Console.WriteLine(receiptView.Display(receipt));
-            }
-
-            Console.ReadKey();
+            
         }
     }
 }
