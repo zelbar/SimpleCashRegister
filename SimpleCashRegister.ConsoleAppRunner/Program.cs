@@ -7,6 +7,9 @@ using SimpleCashRegister.DataAccessLayer.Repositories;
 using SimpleCashRegister.Services;
 using SimpleCashRegister.PresentationLayer;
 using SimpleCashRegister.PresentationLayer.Commands;
+using SimpleCashRegister.PresentationLayer.Commands.Account;
+using SimpleCashRegister.PresentationLayer.Commands.Article;
+using SimpleCashRegister.Exceptions;
 
 namespace SimpleCashRegister.ConsoleAppRunner
 {
@@ -15,56 +18,32 @@ namespace SimpleCashRegister.ConsoleAppRunner
         static void Main(string[] args)
         {
             var userPersister = new UserPersister("Users.xml");
-            var userRepository = new UserRepository(userPersister);
-            var accountServices = new AccountServices(userRepository);
-
             var articlePersister = new ArticlePersister("Articles.xml");
-            var articleRepository = new ArticleRepository(articlePersister);
-            var articleServices = new ArticleServices(articleRepository, accountServices);
-            
             var receiptPersister = new ReceiptPersister("Receipts.xml");
-            var receiptRepository = new ReceiptRepository(receiptPersister);
-            var receiptServices = new ReceiptServices(receiptRepository);
 
-            // Make sure to create the admin user if not present
+            var userRepository = new UserRepository(userPersister);
+            var articleRepository = new ArticleRepository(articlePersister);
+            var receiptRepository = new ReceiptRepository(receiptPersister);
+
+            var accountServices = new AccountServices(userRepository);
+            var articleServices = new ArticleServices(articleRepository, accountServices);
+            var receiptServices = new ReceiptServices(articleRepository, receiptRepository);
+            var reportServices = new ReportServices(articleRepository, receiptRepository);
+
+            // Make sure to create the admin user if not present.
             User admin;
             try
             {
                 admin = userRepository.GetById("admin");
             }
-            catch (EntityNotFoundException ex)
+            catch (EntityNotFoundException)
             {
-                Console.WriteLine(ex.Message);
-                var userToAdd = new AdminUser("admin", "admin")
-                {
-                    DisplayName = "Zvonimir Vanjak"
-                };
-
-                userRepository.Add(userToAdd);
-                Console.WriteLine("User " + userToAdd.DisplayName + " with username \"admin\" added.");
+                accountServices.CreateUser("admin", "admin", true);
             }
 
             // Authenticate
-            Console.WriteLine("Please provide login details: username password");
-            bool success = false;
-            do
-            {
-                string username = "", password = "";
-                {
-                    var line = Console.ReadLine();
-                    try
-                    {
-                        username = line.Split(' ')[0];
-                        password = line.Split(' ')[1];
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Invalid format!");
-                        continue;
-                    }
-                }
-                success = accountServices.Login(username, password);
-            } while (!success);
+            ICommand cmd = new LoginCommand(accountServices);
+            cmd.Execute();
             
             // Adding articles
             var articlesToAdd = new List<Article>
@@ -84,7 +63,7 @@ namespace SimpleCashRegister.ConsoleAppRunner
             };
 
             // Articles from CLI to add!
-            ICommand cmd = new AddNewArticleCommand(articleServices);
+            cmd = new AddNewArticleCommand(articleServices);
             cmd.Execute();
             
             foreach (var article in articlesToAdd)

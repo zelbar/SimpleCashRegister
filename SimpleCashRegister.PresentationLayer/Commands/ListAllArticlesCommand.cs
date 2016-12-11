@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SimpleCashRegister.Services;
 using SimpleCashRegister.PresentationLayer.Views;
+using SimpleCashRegister.PresentationLayer.Commands.Article;
 
 namespace SimpleCashRegister.PresentationLayer.Commands
 {

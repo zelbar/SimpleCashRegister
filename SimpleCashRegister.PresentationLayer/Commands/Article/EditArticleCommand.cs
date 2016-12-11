@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SimpleCashRegister.Exceptions;
 using SimpleCashRegister.Services;
 using SimpleCashRegister.PresentationLayer.Parsers;
 
-namespace SimpleCashRegister.PresentationLayer.Commands
+namespace SimpleCashRegister.PresentationLayer.Commands.Article
 {
     public class EditArticleCommand : ArticleCommand, ICommand
     {
@@ -26,8 +27,24 @@ namespace SimpleCashRegister.PresentationLayer.Commands
         void ICommand.Execute()
         {
             var parser = new ArticleParser();
-            var article = parser.Parse(_line);
-            _articleServices.EditArticle(article);
+            Model.Article article = null;
+            try
+            {
+                article = parser.Parse(_line);
+            }
+            catch(ParseException)
+            {
+                Console.WriteLine("Invalid input format.");
+            }
+
+            try
+            {
+                _articleServices.EditArticle(article);
+            }
+            catch(Exception)
+            {
+                Console.Error.WriteLine("Article with specified id could not be found.");
+            }
             Console.WriteLine();
         }
     }

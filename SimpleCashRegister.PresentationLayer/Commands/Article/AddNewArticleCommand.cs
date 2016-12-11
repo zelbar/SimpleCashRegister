@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using SimpleCashRegister.Services;
 using SimpleCashRegister.PresentationLayer.Parsers;
+using SimpleCashRegister.Model;
+using SimpleCashRegister.Exceptions;
 
-namespace SimpleCashRegister.PresentationLayer.Commands
+namespace SimpleCashRegister.PresentationLayer.Commands.Article
 {
     public class AddNewArticleCommand : ArticleCommand, ICommand
     {
@@ -26,7 +28,16 @@ namespace SimpleCashRegister.PresentationLayer.Commands
         void ICommand.Execute()
         {
             var parser = new ArticleParser();
-            var article = parser.Parse(_line);
+            Model.Article article = default(Model.Article);
+            try
+            {
+                article = parser.Parse(_line);
+            }
+            catch(ParseException)
+            {
+                Console.Error.WriteLine("Invalid input format.");
+            }
+
             _articleServices.AddNewArticle(article);
             Console.WriteLine();
         }

@@ -40,14 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Account\AccountCommand.cs" />
     <Compile Include="Commands\DailyReportCommand.cs" />
-    <Compile Include="Commands\EditArticleCommand.cs" />
+    <Compile Include="Commands\Article\EditArticleCommand.cs" />
     <Compile Include="Commands\ListAllArticlesCommand.cs" />
-    <Compile Include="Commands\AddNewArticleCommand.cs" />
-    <Compile Include="Commands\ArticleCommand.cs" />
+    <Compile Include="Commands\Article\AddNewArticleCommand.cs" />
+    <Compile Include="Commands\Article\ArticleCommand.cs" />
+    <Compile Include="Commands\Account\LoginCommand.cs" />
     <Compile Include="Parsers\ArticleParser.cs" />
     <Compile Include="Commands\CommandRegistry.cs" />
-    <Compile Include="Commands\DeleteArticleCommand.cs" />
+    <Compile Include="Commands\Article\DeleteArticleCommand.cs" />
     <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Commands\ICommand.cs" />
@@ -69,7 +71,9 @@
       <Name>SimpleCashRegister.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\Receipt\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

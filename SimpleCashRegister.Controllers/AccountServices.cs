@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SimpleCashRegister.DataAccessLayer;
 using SimpleCashRegister.DataAccessLayer.Repositories;
 using SimpleCashRegister.Model;
-
+using SimpleCashRegister.Exceptions;
 
 namespace SimpleCashRegister.Services
 {
@@ -25,6 +25,32 @@ namespace SimpleCashRegister.Services
 
         public bool LoggedIn { get { return _loggedIn; } }
         public bool AsAdmin { get { return _asAdmin; } }
+
+        public bool CreateUser(string username, string password, bool admin)
+        {
+            User user;
+            try
+            {
+                user = _userRepository.GetById(username);
+                if (user != null)
+                {
+                    throw new EntityAlreadyExistsException();
+                }
+            }
+            catch (EntityNotFoundException)
+            {
+                if (admin)
+                    user = new AdminUser(username, password);
+                else
+                    user = new CashierUser(username, password);
+
+                _userRepository.Add(user);
+                Console.WriteLine("User " + user.DisplayName + " with username \"" + user.Id + "\" added.");
+
+                return true;
+            }
+            return false;
+        }
 
         public bool Login(string username, string password)
         {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleCashRegister.Model;
+using SimpleCashRegister.Exceptions;
 
 namespace SimpleCashRegister.PresentationLayer.Parsers
 {

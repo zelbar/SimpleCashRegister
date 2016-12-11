@@ -1,4 +1,5 @@
 ﻿using SimpleCashRegister.PresentationLayer.Parsers;
+using SimpleCashRegister.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

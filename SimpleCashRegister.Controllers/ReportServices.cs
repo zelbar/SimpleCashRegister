@@ -9,12 +9,14 @@ namespace SimpleCashRegister.Services
 {
     public class ReportServices
     {
-        public ReportServices(ArticleRepository articleRepository)
+        public ReportServices(ArticleRepository articleRepository, ReceiptRepository receiptRepository)
         {
             _articleRepository = articleRepository;
+            _receiptRepository = receiptRepository;
         }
 
         private readonly ArticleRepository _articleRepository;
+        private readonly ReceiptRepository _receiptRepository;
 
         public void Daily(DateTime dt)
         {

@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using SimpleCashRegister.DataAccessLayer;
 using SimpleCashRegister.DataAccessLayer.Repositories;
 using SimpleCashRegister.Model;
+using SimpleCashRegister.Exceptions;
 
 namespace SimpleCashRegister.Services
 {
     public class ReceiptServices
     {
-        public ReceiptServices(ReceiptRepository receiptRepository)
+        public ReceiptServices(ArticleRepository articleRepository, ReceiptRepository receiptRepository)
         {
+            _articleRepository = articleRepository;
             _receiptRepository = receiptRepository;
         }
 
+        private readonly ArticleRepository _articleRepository;
         private readonly ReceiptRepository _receiptRepository;
 
         public List<Receipt> GetAllReceipts()

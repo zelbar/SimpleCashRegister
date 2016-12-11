@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SimpleCashRegister.Services;
 
-namespace SimpleCashRegister.PresentationLayer.Commands
+namespace SimpleCashRegister.PresentationLayer.Commands.Article
 {
     class DeleteArticleCommand : ArticleCommand, ICommand
     {
