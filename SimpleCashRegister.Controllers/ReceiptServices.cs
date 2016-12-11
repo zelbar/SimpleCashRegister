@@ -27,6 +27,12 @@ namespace SimpleCashRegister.Services
             return rv;
         }
 
+        public Receipt GetById(Guid id)
+        {
+            var rv = _receiptRepository.GetById(id);
+            return rv;
+        }
+
         public void AddNewReceipt(Receipt receipt)
         {
             try
@@ -54,7 +60,7 @@ namespace SimpleCashRegister.Services
             }
         }
 
-        public void DeleteArticle(Guid receiptId)
+        public void DeleteReceipt(Guid receiptId)
         {
             try
             {

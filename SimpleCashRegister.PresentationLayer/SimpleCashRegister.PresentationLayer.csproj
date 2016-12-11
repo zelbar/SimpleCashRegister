@@ -43,8 +43,10 @@
     <Compile Include="Commands\Account\AccountCommand.cs" />
     <Compile Include="Commands\Article\ListAllArticles.cs" />
     <Compile Include="Commands\Receipt\CreateNewReceiptCommand.cs" />
+    <Compile Include="Commands\Receipt\DeleteReceiptCommand.cs" />
     <Compile Include="Commands\Receipt\ReceiptCommand.cs" />
     <Compile Include="Commands\Receipt\ReceiptItemCommands.cs" />
+    <Compile Include="Commands\Receipt\ViewReceiptCommand.cs" />
     <Compile Include="Commands\Report\BestSellingArticlesReportCommand.cs" />
     <Compile Include="Commands\Report\DailyReportCommand.cs" />
     <Compile Include="Commands\Article\EditArticleCommand.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="Parsers\IParser.cs" />
     <Compile Include="Parsers\MassParser.cs" />
     <Compile Include="Parsers\QuantityParser.cs" />
+    <Compile Include="Parsers\ReceiptIdParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ArticleView.cs" />
     <Compile Include="Views\BestSellingArticlesReportView.cs" />
