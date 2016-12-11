@@ -10,11 +10,11 @@ using SimpleCashRegister.Model;
 
 namespace SimpleCashRegister.Controllers
 {
-    public class AccountController
+    public class AccountsController
     {
         private static readonly string FailedLoginMessage = "Invalid username or password.";
 
-        public AccountController(UserRepository userRepository)
+        public AccountsController(UserRepository userRepository)
         {
             _userRepository = userRepository;
         }

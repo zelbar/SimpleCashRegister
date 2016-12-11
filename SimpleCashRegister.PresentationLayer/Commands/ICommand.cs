@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SimpleCashRegister.PresentationLayer.Commands
 {
-    interface ICommand
+    public interface ICommand
     {
         string Name { get; }
         string Description { get; }
         bool AdminOnly { get; }
-        void Execute(string[] args);
+        void Execute();
     }
 }

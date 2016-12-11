@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCashRegister.PresentationLayer.Commands
 {
-    internal class CommandRegistry
+    class CommandRegistry
     {
         public List<ICommand> AllCommands = Assembly
             .GetExecutingAssembly().GetTypes()

@@ -6,29 +6,30 @@ using System.Threading.Tasks;
 
 namespace SimpleCashRegister.PresentationLayer.Commands
 {
-    class HelpCommand : ICommand
+    public class HelpCommand : ICommand
     {
         public bool AdminOnly { get { return false; } }
 
         public string Name { get { return "help"; } }
         public string Description { get { return "Displays all the available commands and their parameters"; } }
 
-        public void Execute(string[] args)
+        public void Execute()
         {
+            var line = Console.ReadLine();
             var registry = new CommandRegistry();
 
-            if (args.Length == 1)
-            {
+            //if (args.Length == 1)
+            //{
                 foreach (var command in registry.AllCommands)
                 {
                     Console.WriteLine("{0}\n\t{1}", command.Name, command.Description);
                 }
-            }
-            else
+            //}
+            //else
             {
-                var command = registry.AllCommands.FirstOrDefault(x => x.Name == args[1]);
+                var command = registry.AllCommands.FirstOrDefault(x => x.Name == line);
                 if (command == null)
-                    command = registry.AllCommands.FirstOrDefault(x => x.Name.Contains(args[1]));
+                    command = registry.AllCommands.FirstOrDefault(x => x.Name.Contains(line));
 
                 if (command == null)
                 {

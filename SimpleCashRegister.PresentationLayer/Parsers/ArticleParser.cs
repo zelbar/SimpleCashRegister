@@ -19,7 +19,7 @@ namespace SimpleCashRegister.PresentationLayer.Parsers
             {
                 id = Convert.ToInt32(tokens[0]);
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 throw new ParseException();
             }
@@ -39,7 +39,7 @@ namespace SimpleCashRegister.PresentationLayer.Parsers
             {
                 price = Convert.ToDecimal(tokens[3]);
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 throw new ParseException();
             }
@@ -49,7 +49,7 @@ namespace SimpleCashRegister.PresentationLayer.Parsers
             {
                 vatRate = Convert.ToDecimal(tokens[4]);
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 throw new ParseException();
             }

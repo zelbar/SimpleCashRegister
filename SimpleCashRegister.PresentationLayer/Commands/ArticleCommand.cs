@@ -9,11 +9,18 @@ namespace SimpleCashRegister.PresentationLayer.Commands
 {
     public class ArticleCommand
     {
-        public ArticleCommand(ArticleController articleController)
+        public ArticleCommand(ArticlesController articleController)
         {
             _articleController = articleController;
+            ReadLine();
         }
 
-        protected readonly ArticleController _articleController;
+        protected readonly ArticlesController _articleController;
+        protected string _line;
+
+        protected virtual void ReadLine()
+        {
+            _line = Console.ReadLine();
+        }
     }
 }

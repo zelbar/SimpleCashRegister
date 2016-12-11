@@ -9,7 +9,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands
 {
     class DeleteArticleCommand : ArticleCommand, ICommand
     {
-        public DeleteArticleCommand(ArticleController articleController) : base(articleController)
+        public DeleteArticleCommand(ArticlesController articleController) : base(articleController)
         {
         }
 
@@ -19,10 +19,19 @@ namespace SimpleCashRegister.PresentationLayer.Commands
 
         public string Name { get { return "delete-article"; } }
 
-        public void Execute(string[] args)
+        public void Execute()
         {
-            int id = Convert.ToInt32(args[1]);
+            int id = default(int);
+            try
+            {
+                id = Convert.ToInt32(_line);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid input format.");
+            }
             _articleController.DeleteArticle(id);
+            Console.WriteLine();
         }
     }
 }
