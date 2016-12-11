@@ -4,9 +4,9 @@ using SimpleCashRegister.PresentationLayer.Views;
 
 namespace SimpleCashRegister.PresentationLayer.Commands.Article
 {
-    public class ListAllArticles : ArticleCommand, ICommand
+    public class ListAllArticlesCommand : ArticleCommand, ICommand
     {
-        public ListAllArticles(ArticleServices articleServices) : base(articleServices)
+        public ListAllArticlesCommand(ArticleServices articleServices) : base(articleServices)
         {
         }
 

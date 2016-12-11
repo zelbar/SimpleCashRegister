@@ -33,7 +33,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Report
             }
             else
             {
-                Console.Error.WriteLine("Couldn't parse the number.");
+                Console.Error.WriteLine(">>> Couldn't parse the number.");
             }
         }
     }

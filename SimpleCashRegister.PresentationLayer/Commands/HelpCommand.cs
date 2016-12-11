@@ -22,7 +22,6 @@ namespace SimpleCashRegister.PresentationLayer.Commands
 
         public void Execute(string[] args)
         {
-            Console.WriteLine("HELP");
             if (args.Length <= 1)
             {
                 foreach (var command in _commands)

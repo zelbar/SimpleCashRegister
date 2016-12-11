@@ -80,6 +80,28 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
         public void DeleteItem()
         {
             Console.WriteLine("Enter article id to delete: ");
+            var line = Console.ReadLine();
+
+            int index = 0;
+            try
+            {
+                index = Convert.ToInt32(line);
+            }
+            catch (ParseException)
+            {
+                Console.Error.WriteLine(">>> Couldn't parse ordinal number number.");
+                return;
+            }
+            
+            if (_receipt.Items.Count < index)
+            {
+                Console.Error.WriteLine(">>> Article with specified ordinal number not found.");
+            }
+            else
+            {
+                _receipt.Items.RemoveAt(index - 1);
+                Console.WriteLine("Article removed.");
+            }
         }
     }
 }

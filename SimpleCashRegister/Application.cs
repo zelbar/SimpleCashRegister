@@ -23,7 +23,9 @@ namespace SimpleCashRegister
             var allCommands = new List<ICommand>()
             {
                 new LoginAccountCommand(accountServices),
+                new ListAllArticlesCommand(articleServices),
                 new AddNewArticleCommand(articleServices),
+                new ViewArticleCommand(articleServices),
                 new EditArticleCommand(articleServices),
                 new DeleteArticleCommand(articleServices),
                 new CreateNewReceiptCommand(articleServices, receiptServices),
@@ -36,7 +38,7 @@ namespace SimpleCashRegister
             commandsDictionary = new Dictionary<string, ICommand>();
             foreach (var cmd in allCommands)
             {
-                if (cmd.AdminOnly && accountServices.AsAdmin || !cmd.AdminOnly)
+                if (!cmd.AdminOnly || cmd.AdminOnly && accountServices.AsAdmin)
                     commandsDictionary.Add(cmd.Name, cmd);
             }
 
@@ -60,15 +62,25 @@ namespace SimpleCashRegister
             var receiptServices = new ReceiptServices(articleRepository, receiptRepository);
             var reportServices = new ReportServices(articleRepository, receiptRepository);
 
-            // Make sure to create the admin user if not present.
-            User admin;
+            // Make sure to create admin user if not present.
+            User user;
             try
             {
-                admin = userRepository.GetById("admin");
+                user = userRepository.GetById("admin");
             }
             catch (EntityNotFoundException)
             {
-                accountServices.CreateUser("admin", "admin", true);
+                accountServices.CreateUser("admin", "admin", "Zvonimir Vanjak", true);
+            }
+
+            // Make sure to create cashier user if not present.
+            try
+            {
+                user = userRepository.GetById("user");
+            }
+            catch (EntityNotFoundException)
+            {
+                accountServices.CreateUser("user", "user", "Vanja Zvonimirka", false);
             }
 
             // Authenticate.
@@ -95,6 +107,7 @@ namespace SimpleCashRegister
                     Console.Error.WriteLine("Command not found.");
                 }
 
+                Console.Write("> ");
                 line = Console.ReadLine();
             } while (line != "exit");
 

@@ -23,54 +23,28 @@ namespace SimpleCashRegister.Services
 
         public List<Receipt> GetAllReceipts()
         {
-            var rv = _receiptRepository.GetAll();
-            return rv;
+            return _receiptRepository.GetAll();
         }
 
         public Receipt GetById(Guid id)
         {
-            var rv = _receiptRepository.GetById(id);
-            return rv;
+            return _receiptRepository.GetById(id);
         }
 
         public void AddNewReceipt(Receipt receipt)
         {
-            try
-            {
-                receipt.DateTimeIssued = DateTime.Now;
-                _receiptRepository.Add(receipt);
-                Console.WriteLine("Ok");
-            }
-            catch(EntityAlreadyExistsException)
-            {
-                Console.Error.WriteLine("Receipt with specified id already exists.");
-            }
+            receipt.DateTimeIssued = DateTime.Now;
+            _receiptRepository.Add(receipt);
         }
 
         public void EditReceipt(Receipt receipt)
         {
-            try
-            {
-                _receiptRepository.Edit(receipt);
-                Console.WriteLine("Ok");
-            }
-            catch (EntryPointNotFoundException)
-            {
-                Console.Error.WriteLine("Receipt not found.");
-            }
+            _receiptRepository.Edit(receipt);
         }
 
         public void DeleteReceipt(Guid receiptId)
         {
-            try
-            {
-                _receiptRepository.Delete(receiptId);
-                Console.WriteLine("Ok");
-            }
-            catch (EntityNotFoundException)
-            {
-                Console.Error.WriteLine("Receipt not found.");
-            }
+            _receiptRepository.Delete(receiptId);
         }
     }
 }

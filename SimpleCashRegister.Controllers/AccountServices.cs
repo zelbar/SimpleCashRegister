@@ -26,7 +26,7 @@ namespace SimpleCashRegister.Services
         public bool LoggedIn { get { return _loggedIn; } }
         public bool AsAdmin { get { return _asAdmin; } }
 
-        public bool CreateUser(string username, string password, bool admin)
+        public bool CreateUser(string username, string password, string displayName, bool admin)
         {
             User user;
             try
@@ -40,12 +40,13 @@ namespace SimpleCashRegister.Services
             catch (EntityNotFoundException)
             {
                 if (admin)
-                    user = new AdminUser(username, password);
+                    user = new AdminUser(username, password) { DisplayName = displayName };
                 else
-                    user = new CashierUser(username, password);
+                    user = new CashierUser(username, password) { DisplayName = displayName };
 
                 _userRepository.Add(user);
-                Console.WriteLine("User " + user.DisplayName + " with username \"" + user.Id + "\" added.");
+                Console.WriteLine("User " + user.DisplayName + " with username \""
+                    + user.Id + "\" and password \"" + password + "\" added.");
 
                 return true;
             }
@@ -72,13 +73,9 @@ namespace SimpleCashRegister.Services
             if (user.PasswordHash == passwordHash)
             {
                 _loggedIn = true;
+                _asAdmin = user is AdminUser;
 
-                if (typeof(User) == typeof(AdminUser))
-                    _asAdmin = true;
-                else
-                    _asAdmin = false;
-
-                Console.WriteLine("Successful login!\nWelcome, {0} ({1})\n", user.DisplayName, (user is AdminUser) ? "Admin" : "Cashier");
+                Console.WriteLine("Successful login!\nWelcome, {0} ({1})\n", user.DisplayName, (_asAdmin) ? "Admin" : "Cashier");
                 success = true;
             }
             else

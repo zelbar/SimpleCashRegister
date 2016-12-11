@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SimpleCashRegister.Services;
 using SimpleCashRegister.PresentationLayer.Parsers;
+using SimpleCashRegister.Exceptions;
 
 namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
 {
@@ -33,9 +34,9 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
             {
                 _receiptServices.DeleteReceipt(receipt.Id);
             }
-            catch(EntryPointNotFoundException)
+            catch(EntityNotFoundException)
             {
-                Console.Error.WriteLine("Receipt with specified id wasn't found.");
+                Console.Error.WriteLine(">>> Receipt with specified id wasn't found.");
                 return;
             }
         }

@@ -43,7 +43,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
             {
                 _receiptServices.GetById(id);
             }
-            catch(ApplicationException)
+            catch(EntityNotFoundException)
             {
                 Console.Error.WriteLine("Receipt with specified id could't be found.");
             }

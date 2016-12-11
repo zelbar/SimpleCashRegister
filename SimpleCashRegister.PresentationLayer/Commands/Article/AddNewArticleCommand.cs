@@ -13,13 +13,13 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
     public class AddNewArticleCommand : ArticleCommand, ICommand
     {
         public AddNewArticleCommand(ArticleServices articleServices) : base(articleServices) { }
+
         bool ICommand.AdminOnly { get { return true; } }
         string ICommand.Name { get { return "add-article"; } }
         string ICommand.Description { get { return "Add a new article."; } }
 
         void ICommand.Execute(string[] args)
         {
-            Console.WriteLine("\nADD NEW ARTICLE");
             Console.WriteLine("Enter article details in this format: id;q(antity)|m(ass);name;price;vatrate");
             Console.WriteLine("eg. 10;q;Vodka 0.3l;42,36;0,25");
 
@@ -32,12 +32,20 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
             }
             catch(ParseException)
             {
-                Console.Error.WriteLine("Invalid input format.");
+                Console.Error.WriteLine(">>> Invalid input format.");
                 return;
             }
 
-            _articleServices.AddNewArticle(article);
-            Console.WriteLine();
+            try
+            {
+                _articleServices.AddNewArticle(article);
+            }
+            catch (EntityAlreadyExistsException)
+            {
+                Console.Error.WriteLine(">>> " + ArticleAlreadyExistsMessage);
+                return;
+            }
+            Console.WriteLine("Article successfully added.");
         }
     }
 }

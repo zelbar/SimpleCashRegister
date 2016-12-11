@@ -35,7 +35,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Account
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("Invalid format!");
+                        Console.WriteLine(">>> Invalid format!");
                         continue;
                     }
                 }

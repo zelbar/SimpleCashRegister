@@ -21,7 +21,6 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
 
         public void Execute(string[] args)
         {
-            Console.WriteLine("\nDELETE ARTICLE");
             Console.WriteLine("Enter article id: ");
 
             var line = Console.ReadLine();
@@ -32,7 +31,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
             }
             catch (FormatException)
             {
-                Console.WriteLine("Invalid input format.");
+                Console.WriteLine(">>> Invalid input format.");
                 return;
             }
             _articleServices.DeleteArticle(id);

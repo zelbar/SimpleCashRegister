@@ -12,9 +12,6 @@ namespace SimpleCashRegister.Services
 {
     public class ArticleServices
     {
-        private static readonly string ArticleAlreadyExistsMessage = "Article with specified id already exists";
-        private static readonly string ArticleNotFoundMessage = "Article with specified id not found.";
-
         public ArticleServices(ArticleRepository articleRepository)
         {
             _articleRepository = articleRepository;
@@ -24,64 +21,27 @@ namespace SimpleCashRegister.Services
 
         public List<Article> GetAllArticles()
         {
-            var rv = _articleRepository.GetAll();
-            return rv;
+            return _articleRepository.GetAll();
         }
 
         public Article GetById(long id)
         {
-            Article rv;
-            try
-            {
-                rv = _articleRepository.GetById(id);
-            }
-            catch (EntityNotFoundException)
-            {
-                Console.Error.WriteLine(ArticleNotFoundMessage);
-                return null;
-            }
-            return rv;
+            return _articleRepository.GetById(id);;
         }
 
-        public bool AddNewArticle(Article article)
+        public void AddNewArticle(Article article)
         {
-            try
-            {
-                _articleRepository.Add(article);
-                Console.WriteLine("Ok");
-                return true;
-            }
-            catch (EntityAlreadyExistsException)
-            {
-                Console.Error.WriteLine(ArticleAlreadyExistsMessage);
-                return false;
-            }
+            _articleRepository.Add(article);
         }
 
         public void EditArticle(Article article)
         {
-            try
-            {
-                _articleRepository.Edit(article);
-                Console.WriteLine("Ok");
-            }
-            catch (EntityNotFoundException)
-            {
-                Console.Error.WriteLine(ArticleNotFoundMessage);
-            }
+            _articleRepository.Edit(article);
         }
 
         public void DeleteArticle(int articleId)
         {
-            try
-            {
-                _articleRepository.Delete(articleId);
-                Console.WriteLine("Ok");
-            }
-            catch (EntityNotFoundException)
-            {
-                Console.Error.WriteLine(ArticleNotFoundMessage);
-            }
+            _articleRepository.Delete(articleId);
         }
     }
 }

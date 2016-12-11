@@ -24,7 +24,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Report
 
         public void Execute(string[] args)
         {
-            Console.WriteLine("DAILY REPORT\nEnter date for which items should be displayed: ");
+            Console.WriteLine("Enter date for which items should be displayed: ");
             var line = Console.ReadLine();
             var parser = new DateParser();
 
@@ -35,7 +35,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Report
             }
             catch(ParseException)
             {
-                Console.Error.WriteLine("Invalid date input. Using today's date!");
+                Console.Error.WriteLine(">>> Invalid date input. Using today's date!");
                 dt = DateTime.Now;
             }
             finally

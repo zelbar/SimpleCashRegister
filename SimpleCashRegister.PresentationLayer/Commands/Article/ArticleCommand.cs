@@ -9,6 +9,9 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
 {
     public abstract class ArticleCommand
     {
+        protected static readonly string ArticleAlreadyExistsMessage = "Article with specified id already exists";
+        protected static readonly string ArticleNotFoundMessage = "Article with specified id not found.";
+
         public ArticleCommand(ArticleServices articleServices)
         {
             _articleServices = articleServices;

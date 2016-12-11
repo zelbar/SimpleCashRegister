@@ -9,41 +9,43 @@ using SimpleCashRegister.PresentationLayer.Parsers;
 
 namespace SimpleCashRegister.PresentationLayer.Commands.Article
 {
-    public class EditArticleCommand : ArticleCommand, ICommand
+    public class ViewArticleCommand : ArticleCommand, ICommand
     {
-        public EditArticleCommand(ArticleServices articleServices) : base(articleServices) { }
+        public ViewArticleCommand(ArticleServices articleServices) : base(articleServices) { }
         bool ICommand.AdminOnly { get { return true; } }
-        string ICommand.Name { get { return "edit-article"; } }
+        string ICommand.Name { get { return "view-article"; } }
         string ICommand.Description { get { return "Edits an existing article."; } }
 
         void ICommand.Execute(string[] args)
         {
-            Console.WriteLine("Enter article details in this format: id;q(antity)|m(ass);name;price;vatrate");
-            Console.WriteLine("eg. 10;q;Vodka 0.3l;42,36;0,25");
+            Console.WriteLine("Enter article id: ");
 
             var line = Console.ReadLine();
-            var parser = new ArticleParser();
-            Model.Article article = null;
+            var parser = new ArticleIdParser();
+            long id;
             try
             {
-                article = parser.Parse(line);
+                id = parser.Parse(line);
             }
             catch(ParseException)
             {
-                Console.WriteLine(">>> Invalid input format.");
+                Console.WriteLine("Invalid input format.");
                 return;
             }
 
+            Model.Article article = default(Model.Article);
             try
             {
-                _articleServices.EditArticle(article);
+                article = _articleServices.GetById(id);
             }
-            catch (EntityNotFoundException)
+            catch(EntityNotFoundException)
             {
                 Console.Error.WriteLine(">>> " + ArticleNotFoundMessage);
+                return;
             }
 
-            _articleServices.EditArticle(article);
+            var view = new Views.ArticleView();
+            Console.WriteLine(view.Display(article));
         }
     }
 }
