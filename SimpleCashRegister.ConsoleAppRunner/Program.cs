@@ -22,16 +22,13 @@ namespace SimpleCashRegister.ConsoleAppRunner
             var receiptsPersister = new DAL.Persisters.ReceiptPersister("Receipts.xml");
             var receiptsRepo = new DAL.Repositories.ReceiptRepository(receiptsPersister);
 
-            // Authenticate
-
-
-            // Adding users
+            // Make sure to create the admin user if not present
             User admin;
             try
             {
                 admin = usersRepo.GetById("admin");
             }
-            catch(EntityNotFoundException ex)
+            catch (EntityNotFoundException ex)
             {
                 Console.WriteLine(ex.Message);
                 var userToAdd = new AdminUser("admin", "admin")
@@ -40,9 +37,32 @@ namespace SimpleCashRegister.ConsoleAppRunner
                 };
 
                 usersRepo.Add(userToAdd);
-                Console.WriteLine("User " + userToAdd.DisplayName + " added");
+                Console.WriteLine("User " + userToAdd.DisplayName + " with username \"admin\" added.");
             }
 
+            // Authenticate
+            Console.WriteLine("Please provide login details: username password");
+            var accountController = new Controllers.AccountController(usersRepo);
+            bool success = false;
+            do
+            {
+                string username = "", password = "";
+                {
+                    var line = Console.ReadLine();
+                    try
+                    {
+                        username = line.Split(' ')[0];
+                        password = line.Split(' ')[1];
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Invalid format!");
+                        continue;
+                    }
+                }
+                success = accountController.Login(username, password);
+            } while (!success);
+            
             // Adding articles
             var articlesToAdd = new List<Article>
             {

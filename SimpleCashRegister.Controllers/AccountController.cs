@@ -12,18 +12,24 @@ namespace SimpleCashRegister.Controllers
 {
     public class AccountController
     {
+        private static readonly string FailedLoginMessage = "Invalid username or password.";
+
         public AccountController(UserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
         private readonly UserRepository _userRepository;
+        private bool _loggedIn;
+        private bool _asAdmin;
 
-        public void Login(string[] args)
+        public bool LoggedIn { get { return _loggedIn; } }
+        public bool AsAdmin { get { return _asAdmin; } }
+
+        public bool Login(string username, string password)
         {
-            var username = args[1];
-            var password = args[2];
             var passwordHash = password.GetHashCode();
+            bool success = false;
 
             User user = default(User);
             try
@@ -33,13 +39,28 @@ namespace SimpleCashRegister.Controllers
             catch (EntityNotFoundException)
             {
                 // replace with decent view;
-                Console.WriteLine("Invalid username or password");
+                Console.WriteLine(FailedLoginMessage);
+                return false;
             }
 
             if (user.PasswordHash == passwordHash)
             {
-                Console.WriteLine("Successful login");
+                _loggedIn = true;
+
+                if (typeof(User) == typeof(AdminUser))
+                    _asAdmin = true;
+                else
+                    _asAdmin = false;
+
+                Console.WriteLine("Successful login!\nWelcome, {0}\n", user.DisplayName);
+                success = true;
             }
+            else
+            {
+                Console.WriteLine(FailedLoginMessage);
+            }
+
+            return success;
         }
     }
 }
