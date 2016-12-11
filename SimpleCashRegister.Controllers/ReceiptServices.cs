@@ -7,11 +7,11 @@ using SimpleCashRegister.DAL;
 using SimpleCashRegister.DAL.Repositories;
 using SimpleCashRegister.Model;
 
-namespace SimpleCashRegister.Controllers
+namespace SimpleCashRegister.Services
 {
-    public class ReceiptsController
+    public class ReceiptServices
     {
-        public ReceiptsController(ReceiptRepository receiptRepository)
+        public ReceiptServices(ReceiptRepository receiptRepository)
         {
             _receiptRepository = receiptRepository;
         }

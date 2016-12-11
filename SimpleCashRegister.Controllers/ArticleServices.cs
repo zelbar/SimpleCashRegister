@@ -7,18 +7,18 @@ using SimpleCashRegister.DAL;
 using SimpleCashRegister.DAL.Repositories;
 using SimpleCashRegister.Model;
 
-namespace SimpleCashRegister.Controllers
+namespace SimpleCashRegister.Services
 {
-    public class ArticlesController
+    public class ArticleServices
     {
-        public ArticlesController(ArticleRepository articleRepository, AccountsController accountsController)
+        public ArticleServices(ArticleRepository articleRepository, AccountServices accountServices)
         {
             _articleRepository = articleRepository;
-            _accountsController = accountsController;
+            _accountServices = accountServices;
         }
 
         private readonly ArticleRepository _articleRepository;
-        private readonly AccountsController _accountsController;
+        private readonly AccountServices _accountServices;
 
         public List<Article> GetAllArticles()
         {
@@ -28,7 +28,7 @@ namespace SimpleCashRegister.Controllers
 
         public void AddNewArticle(Article article)
         {
-            if (_accountsController.AsAdmin)
+            if (_accountServices.AsAdmin)
             {
                 try
                 {
@@ -48,7 +48,7 @@ namespace SimpleCashRegister.Controllers
 
         public void EditArticle(Article article)
         {
-            if (_accountsController.AsAdmin)
+            if (_accountServices.AsAdmin)
             {
                 try
                 {
@@ -68,7 +68,7 @@ namespace SimpleCashRegister.Controllers
 
         public void DeleteArticle(int articleId)
         {
-            if(_accountsController.AsAdmin)
+            if(_accountServices.AsAdmin)
             {
                 try
                 {

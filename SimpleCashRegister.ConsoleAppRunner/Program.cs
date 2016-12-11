@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SimpleCashRegister.Model;
 using SimpleCashRegister.DAL;
+using SimpleCashRegister.DAL.Persisters;
+using SimpleCashRegister.DAL.Repositories;
+using SimpleCashRegister.Services;
 using SimpleCashRegister.PresentationLayer;
 using SimpleCashRegister.PresentationLayer.Commands;
 
@@ -14,23 +14,23 @@ namespace SimpleCashRegister.ConsoleAppRunner
     {
         static void Main(string[] args)
         {
-            var usersPersister = new DAL.Persisters.UserPersister("Users.xml");
-            var usersRepo = new DAL.Repositories.UserRepository(usersPersister);
-            var accountsController = new Controllers.AccountsController(usersRepo);
+            var userPersister = new UserPersister("Users.xml");
+            var userRepository = new UserRepository(userPersister);
+            var accountServices = new AccountServices(userRepository);
 
-            var articlesPersister = new DAL.Persisters.ArticlePersister("Articles.xml");
-            var articlesRepo = new DAL.Repositories.ArticleRepository(articlesPersister);
-            var articlesController = new Controllers.ArticlesController(articlesRepo, accountsController);
+            var articlePersister = new ArticlePersister("Articles.xml");
+            var articleRepository = new ArticleRepository(articlePersister);
+            var articleServices = new ArticleServices(articleRepository, accountServices);
             
-            var receiptsPersister = new DAL.Persisters.ReceiptPersister("Receipts.xml");
-            var receiptsRepo = new DAL.Repositories.ReceiptRepository(receiptsPersister);
-            var receiptsController = new Controllers.ReceiptsController(receiptsRepo);
+            var receiptPersister = new ReceiptPersister("Receipts.xml");
+            var receiptRepository = new ReceiptRepository(receiptPersister);
+            var receiptServices = new ReceiptServices(receiptRepository);
 
             // Make sure to create the admin user if not present
             User admin;
             try
             {
-                admin = usersRepo.GetById("admin");
+                admin = userRepository.GetById("admin");
             }
             catch (EntityNotFoundException ex)
             {
@@ -40,13 +40,12 @@ namespace SimpleCashRegister.ConsoleAppRunner
                     DisplayName = "Zvonimir Vanjak"
                 };
 
-                usersRepo.Add(userToAdd);
+                userRepository.Add(userToAdd);
                 Console.WriteLine("User " + userToAdd.DisplayName + " with username \"admin\" added.");
             }
 
             // Authenticate
             Console.WriteLine("Please provide login details: username password");
-            var accountController = new Controllers.AccountsController(usersRepo);
             bool success = false;
             do
             {
@@ -64,7 +63,7 @@ namespace SimpleCashRegister.ConsoleAppRunner
                         continue;
                     }
                 }
-                success = accountController.Login(username, password);
+                success = accountServices.Login(username, password);
             } while (!success);
             
             // Adding articles
@@ -85,20 +84,20 @@ namespace SimpleCashRegister.ConsoleAppRunner
             };
 
             // Articles from CLI to add!
-            ICommand cmd = new AddNewArticleCommand(articlesController);
+            ICommand cmd = new AddNewArticleCommand(articleServices);
             cmd.Execute();
             
             foreach (var article in articlesToAdd)
             {
-                articlesController.AddNewArticle(article);
+                articleServices.AddNewArticle(article);
             }
 
-            cmd = new EditArticleCommand(articlesController);
+            cmd = new EditArticleCommand(articleServices);
             cmd.Execute();
 
             // Printing articles
             var articleView = new PresentationLayer.Views.ArticleView();
-            foreach (var article in articlesController.GetAllArticles())
+            foreach (var article in articleServices.GetAllArticles())
             {
                 Console.WriteLine(articleView.Display(article));
             }
@@ -118,12 +117,12 @@ namespace SimpleCashRegister.ConsoleAppRunner
             };
             var receiptToAdd = receiptFacotry.CreateReceipt(items);
 
-            receiptsRepo.Add(receiptToAdd);
+            receiptRepository.Add(receiptToAdd);
 
 
             // THIS SHOULD GO TO THE RECEIPT COMMAND!
             var receiptView = new PresentationLayer.Views.ReceiptView();
-            foreach (var receipt in receiptsRepo.GetAll())
+            foreach (var receipt in receiptRepository.GetAll())
             {
                 Console.WriteLine(receiptView.Display(receipt));
             }

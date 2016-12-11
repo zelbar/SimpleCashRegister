@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SimpleCashRegister.Controllers;
+using SimpleCashRegister.Services;
 using SimpleCashRegister.PresentationLayer.Views;
 
 namespace SimpleCashRegister.PresentationLayer.Commands
 {
     public class ListAllArticles : ArticleCommand, ICommand
     {
-        public ListAllArticles(ArticlesController articleController) : base(articleController) { }
+        public ListAllArticles(ArticleServices articleServices) : base(articleServices) { }
         bool ICommand.AdminOnly { get { return true; } }
 
         string ICommand.Name { get { return "list-articles"; } }
@@ -19,7 +19,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands
         void ICommand.Execute()
         {
             var view = new ArticleView();
-            var articles = _articleController.GetAllArticles();
+            var articles = _articleServices.GetAllArticles();
 
             Console.WriteLine("\nLISTING ALL ARTICLES");
             foreach (var article in articles)

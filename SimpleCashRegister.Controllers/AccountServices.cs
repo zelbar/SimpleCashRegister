@@ -8,13 +8,13 @@ using SimpleCashRegister.DAL.Repositories;
 using SimpleCashRegister.Model;
 
 
-namespace SimpleCashRegister.Controllers
+namespace SimpleCashRegister.Services
 {
-    public class AccountsController
+    public class AccountServices
     {
         private static readonly string FailedLoginMessage = "Invalid username or password.";
 
-        public AccountsController(UserRepository userRepository)
+        public AccountServices(UserRepository userRepository)
         {
             _userRepository = userRepository;
         }

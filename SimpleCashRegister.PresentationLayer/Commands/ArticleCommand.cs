@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SimpleCashRegister.Controllers;
+using SimpleCashRegister.Services;
 
 namespace SimpleCashRegister.PresentationLayer.Commands
 {
     public class ArticleCommand
     {
-        public ArticleCommand(ArticlesController articleController)
+        public ArticleCommand(ArticleServices articleServices)
         {
-            _articleController = articleController;
+            _articleServices = articleServices;
             ReadLine();
         }
 
-        protected readonly ArticlesController _articleController;
+        protected readonly ArticleServices _articleServices;
         protected string _line;
 
         protected virtual void ReadLine()

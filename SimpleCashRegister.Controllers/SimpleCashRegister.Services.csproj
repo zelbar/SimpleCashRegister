@@ -7,8 +7,8 @@
     <ProjectGuid>{CCFB68D4-A41E-459E-86CE-D54DFE8049E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimpleCashRegister.Controllers</RootNamespace>
-    <AssemblyName>SimpleCashRegister.Controllers</AssemblyName>
+    <RootNamespace>SimpleCashRegister.Services</RootNamespace>
+    <AssemblyName>SimpleCashRegister.Services</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,11 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ReceiptsController.cs" />
-    <Compile Include="ArticlesController.cs" />
-    <Compile Include="AccountsController.cs" />
+    <Compile Include="ReceiptServices.cs" />
+    <Compile Include="ArticleServices.cs" />
+    <Compile Include="AccountServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportsController.cs" />
+    <Compile Include="ReportServices.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

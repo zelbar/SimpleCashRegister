@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCashRegister.DAL", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCashRegister.ConsoleAppRunner", "SimpleCashRegister.ConsoleAppRunner\SimpleCashRegister.ConsoleAppRunner.csproj", "{CD8503DA-D42E-48A0-8090-3FD7760BED23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCashRegister.Controllers", "SimpleCashRegister.Controllers\SimpleCashRegister.Controllers.csproj", "{CCFB68D4-A41E-459E-86CE-D54DFE8049E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCashRegister.Services", "SimpleCashRegister.Controllers\SimpleCashRegister.Services.csproj", "{CCFB68D4-A41E-459E-86CE-D54DFE8049E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCashRegister.PresentationLayer", "SimpleCashRegister.PresentationLayer\SimpleCashRegister.PresentationLayer.csproj", "{F7C217E5-E893-4F05-9F80-3A9B34BE9FB6}"
 EndProject

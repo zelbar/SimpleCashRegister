@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SimpleCashRegister.Controllers;
+using SimpleCashRegister.Services;
 
 namespace SimpleCashRegister.PresentationLayer.Commands
 {
     class DeleteArticleCommand : ArticleCommand, ICommand
     {
-        public DeleteArticleCommand(ArticlesController articleController) : base(articleController)
+        public DeleteArticleCommand(ArticleServices articleServices) : base(articleServices)
         {
         }
 
@@ -30,7 +30,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands
             {
                 Console.WriteLine("Invalid input format.");
             }
-            _articleController.DeleteArticle(id);
+            _articleServices.DeleteArticle(id);
             Console.WriteLine();
         }
     }

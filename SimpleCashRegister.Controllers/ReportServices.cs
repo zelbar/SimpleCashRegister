@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using SimpleCashRegister.DAL.Repositories;
 
-namespace SimpleCashRegister.Controllers
+namespace SimpleCashRegister.Services
 {
-    public class ReportsController
+    public class ReportServices
     {
-        public ReportsController(ArticleRepository articleRepository)
+        public ReportServices(ArticleRepository articleRepository)
         {
             _articleRepository = articleRepository;
         }

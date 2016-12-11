@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleCashRegister.Controllers\SimpleCashRegister.Controllers.csproj">
+    <ProjectReference Include="..\SimpleCashRegister.Controllers\SimpleCashRegister.Services.csproj">
       <Project>{ccfb68d4-a41e-459e-86ce-d54dfe8049e0}</Project>
-      <Name>SimpleCashRegister.Controllers</Name>
+      <Name>SimpleCashRegister.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimpleCashRegister.DAL\SimpleCashRegister.DAL.csproj">
       <Project>{04113a55-dd06-4a71-88e7-b6b14695563b}</Project>

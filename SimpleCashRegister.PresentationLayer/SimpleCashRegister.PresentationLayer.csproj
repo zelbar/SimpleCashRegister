@@ -60,9 +60,9 @@
     <Compile Include="Views\ReceiptView.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleCashRegister.Controllers\SimpleCashRegister.Controllers.csproj">
+    <ProjectReference Include="..\SimpleCashRegister.Controllers\SimpleCashRegister.Services.csproj">
       <Project>{ccfb68d4-a41e-459e-86ce-d54dfe8049e0}</Project>
-      <Name>SimpleCashRegister.Controllers</Name>
+      <Name>SimpleCashRegister.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimpleCashRegister.Model\SimpleCashRegister.Model.csproj">
       <Project>{e0d3ea9e-46db-4d5a-aa16-065f224c0ec9}</Project>

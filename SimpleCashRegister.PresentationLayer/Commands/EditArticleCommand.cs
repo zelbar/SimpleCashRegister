@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SimpleCashRegister.Controllers;
+using SimpleCashRegister.Services;
 using SimpleCashRegister.PresentationLayer.Parsers;
 
 namespace SimpleCashRegister.PresentationLayer.Commands
 {
     public class EditArticleCommand : ArticleCommand, ICommand
     {
-        public EditArticleCommand(ArticlesController articleController) : base(articleController) { }
+        public EditArticleCommand(ArticleServices articleServices) : base(articleServices) { }
         bool ICommand.AdminOnly { get { return true; } }
         string ICommand.Name { get { return "edit-article"; } }
         string ICommand.Description { get { return "Edits an existing article."; } }
@@ -27,7 +27,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands
         {
             var parser = new ArticleParser();
             var article = parser.Parse(_line);
-            _articleController.EditArticle(article);
+            _articleServices.EditArticle(article);
             Console.WriteLine();
         }
     }
