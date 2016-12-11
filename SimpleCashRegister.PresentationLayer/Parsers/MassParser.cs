@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleCashRegister.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace SimpleCashRegister.PresentationLayer.Parsers
             }
             catch (FormatException)
             {
-                Console.Error.WriteLine("Couldn't parse mass.");
+                throw new ParseException();
             }
 
             return mass;

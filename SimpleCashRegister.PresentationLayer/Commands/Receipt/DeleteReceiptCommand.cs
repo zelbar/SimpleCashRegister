@@ -28,11 +28,20 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
             var line = Console.ReadLine();
             var parser = new Parsers.ReceiptIdParser();
             var receiptId = parser.Parse(line);
-
-            Model.Receipt receipt = default(Model.Receipt);
+            
             try
             {
-                _receiptServices.DeleteReceipt(receipt.Id);
+                receiptId = parser.Parse(line);
+            }
+            catch (ParseException)
+            {
+                Console.Error.Write(">>> Couldn't parse receipt id.");
+                return;
+            }
+            try
+            {
+                _receiptServices.DeleteReceipt(receiptId);
+                Console.WriteLine("Receipt deleted. Long live the tax evasion!");
             }
             catch(EntityNotFoundException)
             {

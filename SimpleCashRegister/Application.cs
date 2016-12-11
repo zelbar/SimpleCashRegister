@@ -22,7 +22,6 @@ namespace SimpleCashRegister
         {
             var allCommands = new List<ICommand>()
             {
-                new LoginAccountCommand(accountServices),
                 new ListAllArticlesCommand(articleServices),
                 new ViewArticleCommand(articleServices),
                 new AddNewArticleCommand(articleServices),
