@@ -50,6 +50,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
                 {
                     _receiptServices.IssueReceipt(receipt);
                     Console.WriteLine(view.Display(receipt));
+                    Console.WriteLine("Receipt successfully issued.");
                 }
                 catch (EnptyReceiptIssuingException)
                 {

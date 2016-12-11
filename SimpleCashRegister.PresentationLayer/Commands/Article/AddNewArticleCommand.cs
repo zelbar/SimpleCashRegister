@@ -39,13 +39,13 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
             try
             {
                 _articleServices.AddNewArticle(article);
+                Console.WriteLine("Article successfully added.");
             }
             catch (EntityAlreadyExistsException)
             {
                 Console.Error.WriteLine(">>> " + ArticleAlreadyExistsMessage);
                 return;
             }
-            Console.WriteLine("Article successfully added.");
         }
     }
 }

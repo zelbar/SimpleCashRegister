@@ -26,12 +26,19 @@ namespace SimpleCashRegister.PresentationLayer.Parsers
             }
 
             bool mass;
-            if (tokens[1][0] == 'q')
-                mass = false;
-            else if (tokens[1][0] == 'm')
-                mass = true;
-            else
+            try
+            {
+                if (tokens[1][0] == 'q')
+                    mass = false;
+                else if (tokens[1][0] == 'm')
+                    mass = true;
+                else
+                    throw new ParseException();
+            }
+            catch (Exception)
+            {
                 throw new ParseException();
+            }
 
             string name = tokens[2];
 

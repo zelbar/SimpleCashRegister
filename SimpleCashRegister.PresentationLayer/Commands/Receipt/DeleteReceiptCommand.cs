@@ -41,7 +41,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
             try
             {
                 _receiptServices.DeleteReceipt(receiptId);
-                Console.WriteLine("Receipt deleted. Long live the tax evasion!");
+                Console.WriteLine("Receipt successfully deleted. Long live the tax evasion!");
             }
             catch(EntityNotFoundException)
             {

@@ -37,13 +37,12 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
             try
             {
                 _articleServices.EditArticle(article);
+                Console.WriteLine("Article successfully edited.");
             }
             catch (EntityNotFoundException)
             {
                 Console.Error.WriteLine(">>> " + ArticleNotFoundMessage);
             }
-
-            _articleServices.EditArticle(article);
         }
     }
 }

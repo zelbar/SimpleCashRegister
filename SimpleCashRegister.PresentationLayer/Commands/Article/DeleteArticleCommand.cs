@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleCashRegister.Services;
+using SimpleCashRegister.Exceptions;
 
 namespace SimpleCashRegister.PresentationLayer.Commands.Article
 {
@@ -34,8 +35,16 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
                 Console.WriteLine(">>> Invalid input format.");
                 return;
             }
-            _articleServices.DeleteArticle(id);
-            Console.WriteLine();
+            try
+            {
+                _articleServices.DeleteArticle(id);
+                Console.WriteLine("Article successfully deleted.");
+            }
+            catch (EntityNotFoundException)
+            {
+                Console.Error.WriteLine("Article with given id not found.");
+                return;
+            }
         }
     }
 }

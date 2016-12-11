@@ -74,6 +74,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
                 {
                     _receiptServices.EditReceipt(receipt);
                     Console.WriteLine(view.Display(receipt));
+                    Console.WriteLine("Receipt successfully re-issued.");
                 }
                 catch (EnptyReceiptIssuingException)
                 {
