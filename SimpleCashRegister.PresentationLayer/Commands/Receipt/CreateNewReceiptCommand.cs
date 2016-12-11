@@ -30,41 +30,11 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
             var receipt = receiptFactory.Create(new List<Model.Item>());
             var view = new ReceiptView();
 
-            var receiptCommands = new ReceiptItemCommands(_articleServices, receipt);
-            char cmdChar;
-            do
-            {
-                Console.WriteLine("Use + to add item, - to remove item, any other key to continue. ");
-                try
-                {
-                    cmdChar = Console.ReadLine()[0];
-                }
-                catch (Exception)
-                {
-                    cmdChar = 'x';
-                }
-
-                if (cmdChar == '+')
-                {
-                    receiptCommands.AddItem();
-                }
-                else if (cmdChar == '-')
-                {
-                    receiptCommands.DeleteItem();
-                }
-                else
-                {
-                    Console.WriteLine("All items registered? (y/n) ");
-                    cmdChar = Console.ReadLine()[0];
-
-                    if (cmdChar == 'y')
-                        break;
-                }
-
-                Console.WriteLine("\n" + view.Display(receipt));
-            } while (true);
+            var receiptCommands = new ReceiptItemCommands(_articleServices, receipt, view);
+            receiptCommands.Run();
 
             Console.WriteLine("Issue receipt? Press i to issue or any key to cancel: ");
+            char cmdChar;
             try
             {
                 cmdChar = Console.ReadLine()[0];
@@ -90,7 +60,6 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
             {
                 Console.WriteLine("Receipt cancelled.");
             }
-
         }
     }
 }

@@ -12,14 +12,52 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
 {
     public class ReceiptItemCommands
     {
-        public ReceiptItemCommands(ArticleServices articleServices, Model.Receipt receipt)
+        public ReceiptItemCommands(ArticleServices articleServices, Model.Receipt receipt, Views.ReceiptView view)
         {
             _articleServices = articleServices;
             _receipt = receipt;
+            _view = view;
         }
 
         private readonly ArticleServices _articleServices;
         private Model.Receipt _receipt;
+        private Views.ReceiptView _view;
+
+        public void Run()
+        {
+            char cmdChar;
+            do
+            {
+                Console.WriteLine("Use + to add item, - to remove item, any other key to continue. ");
+                try
+                {
+                    cmdChar = Console.ReadLine()[0];
+                }
+                catch (Exception)
+                {
+                    cmdChar = 'x';
+                }
+
+                if (cmdChar == '+')
+                {
+                    this.AddItem();
+                }
+                else if (cmdChar == '-')
+                {
+                    this.DeleteItem();
+                }
+                else
+                {
+                    Console.WriteLine("All items registered? (y/n) ");
+                    cmdChar = Console.ReadLine()[0];
+
+                    if (cmdChar == 'y')
+                        break;
+                }
+
+                Console.WriteLine("\n" + _view.Display(_receipt));
+            } while (true);
+        }
 
         public void AddItem()
         {
@@ -57,7 +95,16 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
                 if (article is ArticleSoldByQuantity)
                 {
                     var parser = new QuantityParser();
-                    uint quantity = parser.Parse(quantityText);
+                    uint quantity;
+                    try
+                    {
+                        quantity = parser.Parse(quantityText);
+                    }
+                    catch(ParseException)
+                    {
+                        Console.Error.WriteLine("Failed to parse quantity input.");
+                        return;
+                    }
 
                     item = new ItemSoldByQuantity()
                     {
@@ -69,7 +116,16 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
                 else if (article is ArticleSoldByMass)
                 {
                     var parser = new MassParser();
-                    decimal mass = parser.Parse(quantityText);
+                    decimal mass = 1;
+                    try
+                    {
+                        parser.Parse(quantityText);
+                    }
+                    catch (ParseException)
+                    {
+                        Console.Error.WriteLine("Failed to parse mass input.");
+                        return;
+                    }
 
                     item = new ItemSoldByMass()
                     {
@@ -97,7 +153,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
             {
                 index = Convert.ToInt32(line);
             }
-            catch (ParseException)
+            catch (FormatException)
             {
                 Console.Error.WriteLine(">>> Couldn't parse ordinal number number.");
                 return;
