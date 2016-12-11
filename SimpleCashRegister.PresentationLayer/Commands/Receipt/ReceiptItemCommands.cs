@@ -25,8 +25,18 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
         {
             Console.WriteLine("Enter article id and quantity in number or kilograms (eg. 325 2): ");
             string line = Console.ReadLine();
-            var articleIdText = line.Split(' ')[0];
-            var quantityText = line.Split(' ')[1];
+
+            string articleIdText, quantityText;
+            try
+            {
+                articleIdText = line.Split(' ')[0];
+                quantityText = line.Split(' ')[1];
+            }
+            catch (Exception)
+            {
+                Console.Error.WriteLine("Invalid format.");
+                return;
+            }
 
             long id = default(long);
             try

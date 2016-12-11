@@ -14,7 +14,7 @@ namespace SimpleCashRegister.PresentationLayer.Views
             var sb = new StringBuilder();
             sb.AppendFormat("DAILY REPORT " + dailyReport.Date.Date);
             sb.AppendFormat("\nNumber of Receipts: {0}\nTotal Payments: {1}\nTotal Payments Including VAT: {2}\n",
-                dailyReport.NumberOfReceipt, dailyReport.TotalPayments, dailyReport.TotalPaymentsIncludingVat);
+                dailyReport.NumberOfReceipt, dailyReport.TotalPayments.ToString("C"), dailyReport.TotalPaymentsIncludingVat.ToString("C"));
 
             foreach(var item in dailyReport.Receipts)
             {

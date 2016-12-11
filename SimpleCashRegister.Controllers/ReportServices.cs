@@ -61,9 +61,10 @@ namespace SimpleCashRegister.Services
             var bestSellingArticles = items.GroupBy(x => x.Article)
                 .OrderByDescending(x => x.Sum(y => y.GetCost())).Take(limit);
 
-            return bestSellingArticles.Select(
+            var rv = bestSellingArticles.Select(
                 x => new BestSellingArticleReportItem(x.Key, x.Sum(y => y.GetCost()))
                 );
+            return rv;
         }
 
         public BestSellingArticlesReport BestSellingArticlesReport(int limit)

@@ -41,11 +41,12 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
             Model.Receipt receipt = default(Model.Receipt);
             try
             {
-                _receiptServices.GetById(id);
+                receipt = _receiptServices.GetById(id);
             }
             catch(EntityNotFoundException)
             {
                 Console.Error.WriteLine("Receipt with specified id could't be found.");
+                return;
             }
 
             var receiptView = new Views.ReceiptView();

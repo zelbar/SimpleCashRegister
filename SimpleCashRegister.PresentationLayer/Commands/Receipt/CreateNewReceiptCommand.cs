@@ -7,6 +7,7 @@ using SimpleCashRegister.Services;
 using SimpleCashRegister.PresentationLayer.Commands.Article;
 using SimpleCashRegister.Model.Factories;
 using SimpleCashRegister.PresentationLayer.Views;
+using SimpleCashRegister.Exceptions;
 
 namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
 {
@@ -34,7 +35,14 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
             do
             {
                 Console.WriteLine("Use + to add item, - to remove item, any other key to continue. ");
-                cmdChar = Console.ReadLine()[0];
+                try
+                {
+                    cmdChar = Console.ReadLine()[0];
+                }
+                catch (Exception)
+                {
+                    cmdChar = 'x';
+                }
 
                 if (cmdChar == '+')
                 {
@@ -57,12 +65,26 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Receipt
             } while (true);
 
             Console.WriteLine("Issue receipt? Press i to issue or any key to cancel: ");
-            cmdChar = Console.ReadLine()[0];
+            try
+            {
+                cmdChar = Console.ReadLine()[0];
+            }
+            catch (Exception)
+            {
+                cmdChar = 'x';
+            }
 
             if (cmdChar == 'i')
             {
-                receipt.DateTimeIssued = DateTime.Now;
-                _receiptServices.AddNewReceipt(receipt);
+                try
+                {
+                    _receiptServices.IssueReceipt(receipt);
+                    Console.WriteLine(view.Display(receipt));
+                }
+                catch (EnptyReceiptIssuingException)
+                {
+                    Console.Error.WriteLine("Couldn't issue an empty receipt.");
+                }
             }
             else
             {

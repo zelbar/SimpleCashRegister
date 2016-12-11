@@ -31,9 +31,13 @@ namespace SimpleCashRegister.Services
             return _receiptRepository.GetById(id);
         }
 
-        public void AddNewReceipt(Receipt receipt)
+        public void IssueReceipt(Receipt receipt)
         {
             receipt.DateTimeIssued = DateTime.Now;
+            if (receipt.Items.Count == 0)
+            {
+                throw new EnptyReceiptIssuingException();
+            }
             _receiptRepository.Add(receipt);
         }
 

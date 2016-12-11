@@ -24,12 +24,13 @@ namespace SimpleCashRegister
             {
                 new LoginAccountCommand(accountServices),
                 new ListAllArticlesCommand(articleServices),
-                new AddNewArticleCommand(articleServices),
                 new ViewArticleCommand(articleServices),
+                new AddNewArticleCommand(articleServices),
                 new EditArticleCommand(articleServices),
                 new DeleteArticleCommand(articleServices),
+                new ViewReceiptCommand(articleServices, receiptServices),
                 new CreateNewReceiptCommand(articleServices, receiptServices),
-                //new EditReceiptCommand
+                new EditReceiptCommand(articleServices, receiptServices),
                 new DeleteReceiptCommand(articleServices, receiptServices),
                 new DailyReportCommand(reportServices),
                 new BestSellingArticlesReportCommand(reportServices),

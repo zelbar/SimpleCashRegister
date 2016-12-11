@@ -14,7 +14,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
         public ViewArticleCommand(ArticleServices articleServices) : base(articleServices) { }
         bool ICommand.AdminOnly { get { return true; } }
         string ICommand.Name { get { return "view-article"; } }
-        string ICommand.Description { get { return "Edits an existing article."; } }
+        string ICommand.Description { get { return "Displays data about an existing article."; } }
 
         void ICommand.Execute(string[] args)
         {
