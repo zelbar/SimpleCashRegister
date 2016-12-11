@@ -25,14 +25,14 @@ namespace SimpleCashRegister.Model
         {
             get
             {
-                return Items.Sum(x => x.Article.Price);
+                return Items.Sum(x => x.Article.NominalPrice * x.GetUnits());
             }
         }
         public decimal TotalCostIncludingVat
         {
             get
             {
-                return Items.Sum(x => x.Article.PriceIncludingVat);
+                return Items.Sum(x => x.Article.PriceIncludingVat * x.GetUnits());
             }
         }
         public decimal TotalVat

@@ -23,14 +23,14 @@ namespace SimpleCashRegister.Model
         }
         
         public string Name { get; set; }
-        public decimal Price { get; set; }
+        public decimal NominalPrice { get; set; }
         public decimal VatRate { get; set; }
 
         public decimal PriceIncludingVat
         {
             get
             {
-                return Price * (1 + VatRate);
+                return NominalPrice * (1 + VatRate);
             }
         }
     }

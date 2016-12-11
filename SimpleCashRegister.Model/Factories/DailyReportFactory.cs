@@ -18,7 +18,7 @@ namespace SimpleCashRegister.Model.Factories
                 TotalPayments = receipts
                                 .Sum(x => x.Items.Sum(y => y.GetCost())),
                 TotalPaymentsIncludingVat = receipts
-                    .Sum(x => x.Items.Sum(y => y.Article.PriceIncludingVat * y.GetUnits())),
+                    .Sum(x => x.Items.Sum(y => x.TotalCost)),
                 Receipts = receipts
             };
 

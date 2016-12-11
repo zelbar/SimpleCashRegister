@@ -61,7 +61,7 @@ namespace SimpleCashRegister.PresentationLayer.Parsers
                 article = new ArticleSoldByMass(id)
                 {
                     Name = name,
-                    Price = price,
+                    NominalPrice = price,
                     VatRate = vatRate
                 };
             }
@@ -70,7 +70,7 @@ namespace SimpleCashRegister.PresentationLayer.Parsers
                 article = new ArticleSoldByQuantity(id)
                 {
                     Name = name,
-                    Price = price,
+                    NominalPrice = price,
                     VatRate = vatRate
                 };
             }

@@ -17,9 +17,12 @@ namespace SimpleCashRegister.PresentationLayer.Views
             
             foreach(var item in receipt.Items)
             {
-                sb.AppendFormat("\t{0} x {1}; {2} (+{3}% VAT) = {4}\n",
-                    item.GetUnitsString(), item.Article.Name, item.Article.Price.ToString(CurrencyFormatSpecifier), 
-                    item.Article.VatRate * 100, item.Article.PriceIncludingVat.ToString(CurrencyFormatSpecifier));
+                sb.AppendFormat("\t{0}; {1} x {2} = {3} (+{4}% VAT) = {5}\n",
+                    item.Article.Name, item.GetUnitsString(), 
+                    item.Article.NominalPrice.ToString(CurrencyFormatSpecifier),
+                    item.GetCost().ToString(CurrencyFormatSpecifier),
+                    100 * item.Article.VatRate, 
+                    ((1 + item.Article.VatRate) * item.GetCost()).ToString(CurrencyFormatSpecifier));
             }
 
             sb.AppendFormat("Total: {0}; Total including VAT: {1}\n", 

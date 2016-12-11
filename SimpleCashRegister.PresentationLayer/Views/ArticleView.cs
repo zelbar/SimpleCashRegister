@@ -15,7 +15,7 @@ namespace SimpleCashRegister.PresentationLayer.Views
             //{id}: {Name}; {Price} + ({VatRate}% VAT) = {PriceIncludingVat}
             
             var rv = string.Format("{0}: {1}; {2} (+{3}% VAT) = {4}",
-                    article.Id, article.Name, article.Price.ToString(CurrencyFormatSpecifier), 
+                    article.Id, article.Name, article.NominalPrice.ToString(CurrencyFormatSpecifier), 
                     article.VatRate * 100, article.PriceIncludingVat.ToString(CurrencyFormatSpecifier));
             
             return rv;

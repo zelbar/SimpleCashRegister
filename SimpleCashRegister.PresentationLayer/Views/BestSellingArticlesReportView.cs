@@ -15,7 +15,7 @@ namespace SimpleCashRegister.PresentationLayer.Views
             foreach (var item in report.Items)
             {
                 sb.AppendFormat("{0}: {1} ({2}), Total revenue {3}\n",
-                    item.Article.Id, item.Article.Name, item.Article.Price.ToString("C"), item.TotalRevenue.ToString("C"));
+                    item.Article.Id, item.Article.Name, item.Article.NominalPrice.ToString("C"), item.TotalRevenue.ToString("C"));
             }
             var rv = sb.ToString();
             return rv;

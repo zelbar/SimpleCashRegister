@@ -13,7 +13,7 @@ namespace SimpleCashRegister.Model
 
         public override decimal GetCost()
         {
-            return Article.Price * Mass;
+            return Article.NominalPrice * Mass;
         }
 
         public override decimal GetUnits()
