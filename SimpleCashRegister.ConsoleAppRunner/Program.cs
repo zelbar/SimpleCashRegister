@@ -26,7 +26,7 @@ namespace SimpleCashRegister.ConsoleAppRunner
             var receiptRepository = new ReceiptRepository(receiptPersister);
 
             var accountServices = new AccountServices(userRepository);
-            var articleServices = new ArticleServices(articleRepository, accountServices);
+            var articleServices = new ArticleServices(articleRepository);
             var receiptServices = new ReceiptServices(articleRepository, receiptRepository);
             var reportServices = new ReportServices(articleRepository, receiptRepository);
 
@@ -42,7 +42,7 @@ namespace SimpleCashRegister.ConsoleAppRunner
             }
 
             // Authenticate
-            ICommand cmd = new LoginCommand(accountServices);
+            ICommand cmd = new LoginAccountCommand(accountServices);
             cmd.Execute();
             
             // Adding articles
@@ -94,7 +94,7 @@ namespace SimpleCashRegister.ConsoleAppRunner
                     Article = articlesToAdd[1]
                 }
             };
-            var receiptToAdd = receiptFacotry.CreateReceipt(items);
+            var receiptToAdd = receiptFacotry.Create(items);
 
             receiptRepository.Add(receiptToAdd);
 

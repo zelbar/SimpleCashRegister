@@ -8,7 +8,7 @@ namespace SimpleCashRegister.Model.Factories
 {
     public class ReceiptFactory
     {
-        public Receipt CreateReceipt(List <Item> items)
+        public Receipt Create(List <Item> items)
         {
             var receipt = new Receipt();
             receipt.Items = items;

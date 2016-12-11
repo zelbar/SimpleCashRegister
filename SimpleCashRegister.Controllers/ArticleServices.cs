@@ -12,14 +12,15 @@ namespace SimpleCashRegister.Services
 {
     public class ArticleServices
     {
-        public ArticleServices(ArticleRepository articleRepository, AccountServices accountServices)
+        private static readonly string ArticleAlreadyExistsMessage = "Article with specified id already exists";
+        private static readonly string ArticleNotFoundMessage = "Article with specified id not found.";
+
+        public ArticleServices(ArticleRepository articleRepository)
         {
             _articleRepository = articleRepository;
-            _accountServices = accountServices;
         }
 
         private readonly ArticleRepository _articleRepository;
-        private readonly AccountServices _accountServices;
 
         public List<Article> GetAllArticles()
         {
@@ -27,59 +28,44 @@ namespace SimpleCashRegister.Services
             return rv;
         }
 
-        public void AddNewArticle(Article article)
+        public bool AddNewArticle(Article article)
         {
-            if (_accountServices.AsAdmin)
+            try
             {
-                try
-                {
-                    _articleRepository.Add(article);
-                    Console.WriteLine("Ok");
-                }
-                catch (EntityAlreadyExistsException)
-                {
-                    Console.Error.WriteLine("Article with specified id already exists.");
-                }
+                _articleRepository.Add(article);
+                Console.WriteLine("Ok");
+                return true;
             }
-            else
+            catch (EntityAlreadyExistsException)
             {
-                Console.Error.WriteLine("No permission.");
+                Console.Error.WriteLine(ArticleAlreadyExistsMessage);
+                return false;
             }
         }
 
         public void EditArticle(Article article)
         {
-            if (_accountServices.AsAdmin)
+            try
             {
-                try
-                {
-                    _articleRepository.Edit(article);
-                    Console.WriteLine("Ok");
-                }
-                catch (EntityNotFoundException)
-                {
-                    Console.Error.WriteLine("Article with specified id not found.");
-                }
+                _articleRepository.Edit(article);
+                Console.WriteLine("Ok");
             }
-            else
+            catch (EntityNotFoundException)
             {
-                Console.Error.WriteLine("No permission.");
+                Console.Error.WriteLine(ArticleNotFoundMessage);
             }
         }
 
         public void DeleteArticle(int articleId)
         {
-            if(_accountServices.AsAdmin)
+            try
             {
-                try
-                {
-                    _articleRepository.Delete(articleId);
-                    Console.WriteLine("Ok");
-                }
-                catch (EntityNotFoundException)
-                {
-                    Console.Error.WriteLine("Article with specified id doesn't exist.");
-                }
+                _articleRepository.Delete(articleId);
+                Console.WriteLine("Ok");
+            }
+            catch (EntityNotFoundException)
+            {
+                Console.Error.WriteLine(ArticleNotFoundMessage);
             }
         }
     }

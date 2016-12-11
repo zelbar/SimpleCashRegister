@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SimpleCashRegister.DataAccessLayer.Persisters;
 using SimpleCashRegister.Model;
+using SimpleCashRegister.Exceptions;
 
 namespace SimpleCashRegister.DataAccessLayer.Repositories
 {

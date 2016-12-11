@@ -7,9 +7,9 @@ using SimpleCashRegister.Services;
 
 namespace SimpleCashRegister.PresentationLayer.Commands.Account
 {
-    public class LoginCommand : AccountCommand, ICommand
+    public class LoginAccountCommand : AccountCommand, ICommand
     {
-        public LoginCommand(AccountServices accountServices) : base(accountServices)
+        public LoginAccountCommand(AccountServices accountServices) : base(accountServices)
         {
         }
 

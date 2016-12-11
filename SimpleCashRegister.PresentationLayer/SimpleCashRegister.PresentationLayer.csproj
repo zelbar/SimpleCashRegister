@@ -46,7 +46,7 @@
     <Compile Include="Commands\ListAllArticlesCommand.cs" />
     <Compile Include="Commands\Article\AddNewArticleCommand.cs" />
     <Compile Include="Commands\Article\ArticleCommand.cs" />
-    <Compile Include="Commands\Account\LoginCommand.cs" />
+    <Compile Include="Commands\Account\LoginAccountCommand.cs" />
     <Compile Include="Parsers\ArticleParser.cs" />
     <Compile Include="Commands\CommandRegistry.cs" />
     <Compile Include="Commands\Article\DeleteArticleCommand.cs" />

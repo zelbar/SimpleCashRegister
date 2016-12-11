@@ -44,8 +44,13 @@
     <Compile Include="Article.cs" />
     <Compile Include="ArticleSoldByMass.cs" />
     <Compile Include="ArticleSoldByQuantity.cs" />
+    <Compile Include="BestSellingArticleReportItem.cs" />
+    <Compile Include="BestSellingArticlesReport.cs" />
     <Compile Include="CashierUser.cs" />
+    <Compile Include="DailyReport.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="Factories\BestSellingArticlesReportFactory.cs" />
+    <Compile Include="Factories\DailyReportFactory.cs" />
     <Compile Include="Factories\ReceiptFactory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemSoldByMass.cs" />
