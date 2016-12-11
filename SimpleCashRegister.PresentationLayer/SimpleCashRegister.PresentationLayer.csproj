@@ -41,14 +41,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Account\AccountCommand.cs" />
-    <Compile Include="Commands\DailyReportCommand.cs" />
+    <Compile Include="Commands\Report\BestSellingArticlesReportCommand.cs" />
+    <Compile Include="Commands\Report\DailyReportCommand.cs" />
     <Compile Include="Commands\Article\EditArticleCommand.cs" />
     <Compile Include="Commands\ListAllArticlesCommand.cs" />
     <Compile Include="Commands\Article\AddNewArticleCommand.cs" />
     <Compile Include="Commands\Article\ArticleCommand.cs" />
     <Compile Include="Commands\Account\LoginAccountCommand.cs" />
+    <Compile Include="Commands\Report\ReportCommand.cs" />
     <Compile Include="Parsers\ArticleParser.cs" />
-    <Compile Include="Commands\CommandRegistry.cs" />
     <Compile Include="Commands\Article\DeleteArticleCommand.cs" />
     <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="Exceptions.cs" />
@@ -57,6 +58,8 @@
     <Compile Include="Parsers\IParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ArticleView.cs" />
+    <Compile Include="Views\BestSellingArticlesReportView.cs" />
+    <Compile Include="Views\DailyReportView.cs" />
     <Compile Include="Views\ErrorView.cs" />
     <Compile Include="Views\IView.cs" />
     <Compile Include="Views\ReceiptView.cs" />

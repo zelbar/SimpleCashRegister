@@ -30,6 +30,11 @@ namespace SimpleCashRegister.ConsoleAppRunner
             var receiptServices = new ReceiptServices(articleRepository, receiptRepository);
             var reportServices = new ReportServices(articleRepository, receiptRepository);
 
+            IEnumerable<ICommand> commandRepository = new List<ICommand>()
+            {
+
+            };
+
             // Make sure to create the admin user if not present.
             User admin;
             try
