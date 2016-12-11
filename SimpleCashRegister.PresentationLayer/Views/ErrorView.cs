@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace SimpleCashRegister.PresentationLayer.Views
 {
-    interface IView<T>
+    public class ErrorView : IView<string>
     {
-        string Display(T item);
+        public string Display(string message)
+        {
+            return "ERROR:\n" + message + "\n";
+        }
     }
 }

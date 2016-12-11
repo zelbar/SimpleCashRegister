@@ -50,7 +50,10 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Parsers\IParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ArticleView.cs" />
+    <Compile Include="Views\ErrorView.cs" />
     <Compile Include="Views\IView.cs" />
+    <Compile Include="Views\ReceiptView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleCashRegister.Controllers\SimpleCashRegister.Controllers.csproj">

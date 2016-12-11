@@ -26,7 +26,7 @@ namespace SimpleCashRegister.Controllers
             }
             catch(EntityAlreadyExistsException)
             {
-
+                //return ErrorView("Article with specified id not found.");
             }
         }
 

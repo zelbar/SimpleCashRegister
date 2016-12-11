@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SimpleCashRegister.DAL;
 using SimpleCashRegister.Model;
+using SimpleCashRegister.DAL;
+using SimpleCashRegister.PresentationLayer;
 
 namespace SimpleCashRegister.ConsoleAppRunner
 {
@@ -21,15 +22,18 @@ namespace SimpleCashRegister.ConsoleAppRunner
             var receiptsPersister = new DAL.Persisters.ReceiptPersister("Receipts.xml");
             var receiptsRepo = new DAL.Repositories.ReceiptRepository(receiptsPersister);
 
+            // Authenticate
+
+
             // Adding users
             User admin;
             try
             {
                 admin = usersRepo.GetById("admin");
             }
-            catch(EntityNotFoundException e)
+            catch(EntityNotFoundException ex)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(ex.Message);
                 var userToAdd = new AdminUser("admin", "admin")
                 {
                     DisplayName = "Zvonimir Vanjak"
@@ -48,29 +52,30 @@ namespace SimpleCashRegister.ConsoleAppRunner
                     Price = (decimal)23.44,
                     VatRate = (decimal)0.15
                 },
-                new ArticleSoldByMass(10)
+                new ArticleSoldByMass(15)
                 {
                     Name = "Almonds",
                     Price = (decimal)15.21,
                     VatRate = (decimal)0.20
                 }
             };
-                    
-
-            try
+            
+            foreach (var article in articlesToAdd)
             {
-                foreach (var article in articlesToAdd)
+                try
+                {
                     articlesRepo.Add(article);
-            }
-            catch (EntityAlreadyExistsException e)
-            {
-                Console.WriteLine(e.Message);
+                }
+                catch (EntityAlreadyExistsException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
 
+            var articleView = new PresentationLayer.Views.ArticleView();
             foreach (var article in articlesRepo.GetAll())
             {
-                Console.WriteLine("{0}: {1}; {2} (+{3}% VAT) = {4}", 
-                    article.Id, article.Name, article.Price, article.VatRate * 100, article.PriceIncludingVat);
+                Console.WriteLine(articleView.Display(article));
             }
 
             var receiptFacotry = new Model.Factories.ReceiptFactory();
@@ -90,14 +95,10 @@ namespace SimpleCashRegister.ConsoleAppRunner
 
             receiptsRepo.Add(receiptToAdd);
 
+            var receiptView = new PresentationLayer.Views.ReceiptView();
             foreach (var receipt in receiptsRepo.GetAll())
             {
-                Console.WriteLine(receipt.Id + ": " + receipt.DateTimeIssued);
-                foreach (var item in receipt.Items)
-                {
-                    Console.WriteLine("\t{0} x {1}; {2} (+{3}% VAT) = {4}",
-                    item.GetUnitsString(), item.Article.Name, item.Article.Price, item.Article.VatRate * 100, item.Article.PriceIncludingVat);
-                }
+                Console.WriteLine(receiptView.Display(receipt));
             }
 
             Console.ReadKey();
