@@ -16,20 +16,20 @@ namespace SimpleCashRegister.PresentationLayer.Commands
         public void Execute()
         {
             var line = Console.ReadLine();
-            var registry = new CommandRegistry();
+            var registry = new List<ICommand>();
 
             //if (args.Length == 1)
             //{
-                foreach (var command in registry.AllCommands)
+                foreach (var command in registry)
                 {
                     Console.WriteLine("{0}\n\t{1}", command.Name, command.Description);
                 }
             //}
             //else
             {
-                var command = registry.AllCommands.FirstOrDefault(x => x.Name == line);
+                var command = registry.FirstOrDefault(x => x.Name == line);
                 if (command == null)
-                    command = registry.AllCommands.FirstOrDefault(x => x.Name.Contains(line));
+                    command = registry.FirstOrDefault(x => x.Name.Contains(line));
 
                 if (command == null)
                 {

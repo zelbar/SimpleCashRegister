@@ -7,7 +7,7 @@ using SimpleCashRegister.Services;
 
 namespace SimpleCashRegister.PresentationLayer.Commands.Report
 {
-    public class ReportCommand
+    public abstract class ReportCommand
     {
         public ReportCommand(ReportServices reportServices)
         {

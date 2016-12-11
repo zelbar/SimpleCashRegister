@@ -36,6 +36,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
             catch(ParseException)
             {
                 Console.Error.WriteLine("Invalid input format.");
+                return;
             }
 
             _articleServices.AddNewArticle(article);

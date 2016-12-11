@@ -29,6 +29,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
             catch (FormatException)
             {
                 Console.WriteLine("Invalid input format.");
+                return;
             }
             _articleServices.DeleteArticle(id);
             Console.WriteLine();

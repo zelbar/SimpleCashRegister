@@ -28,6 +28,21 @@ namespace SimpleCashRegister.Services
             return rv;
         }
 
+        public Article GetById(long id)
+        {
+            Article rv;
+            try
+            {
+                rv = _articleRepository.GetById(id);
+            }
+            catch (EntityNotFoundException)
+            {
+                Console.Error.WriteLine(ArticleNotFoundMessage);
+                return null;
+            }
+            return rv;
+        }
+
         public bool AddNewArticle(Article article)
         {
             try

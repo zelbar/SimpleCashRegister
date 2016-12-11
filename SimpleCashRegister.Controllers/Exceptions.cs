@@ -7,5 +7,4 @@ using System.Threading.Tasks;
 namespace SimpleCashRegister.Exceptions
 {
     public class SimpleCashRegisterException : ApplicationException { }
-    public class UserException : SimpleCashRegisterException { }
 }

@@ -7,7 +7,7 @@ using SimpleCashRegister.Services;
 
 namespace SimpleCashRegister.PresentationLayer.Commands.Article
 {
-    public class ArticleCommand
+    public abstract class ArticleCommand
     {
         public ArticleCommand(ArticleServices articleServices)
         {

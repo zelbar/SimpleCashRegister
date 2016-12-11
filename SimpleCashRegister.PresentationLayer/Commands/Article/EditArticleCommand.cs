@@ -35,6 +35,7 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
             catch(ParseException)
             {
                 Console.WriteLine("Invalid input format.");
+                return;
             }
 
             try
@@ -45,7 +46,8 @@ namespace SimpleCashRegister.PresentationLayer.Commands.Article
             {
                 Console.Error.WriteLine("Article with specified id could not be found.");
             }
-            Console.WriteLine();
+
+            _articleServices.EditArticle(article);
         }
     }
 }
