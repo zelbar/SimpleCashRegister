@@ -1,6 +1,6 @@
 ﻿using SimpleCashRegister.Model;
 
-namespace SimpleCashRegister.DAL.Persisters
+namespace SimpleCashRegister.DataAccessLayer.Persisters
 {
     public class UserPersister : XmlPersister<User>
     {

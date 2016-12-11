@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleCashRegister.DAL
+namespace SimpleCashRegister.DataAccessLayer
 {
     public class SimpleCashRegisterException : ApplicationException { }
     public class EntityAlreadyExistsException : SimpleCashRegisterException { }

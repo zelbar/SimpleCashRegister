@@ -7,8 +7,8 @@
     <ProjectGuid>{04113A55-DD06-4A71-88E7-B6B14695563B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimpleCashRegister.DAL</RootNamespace>
-    <AssemblyName>SimpleCashRegister.DAL</AssemblyName>
+    <RootNamespace>SimpleCashRegister.DataAccessLayer</RootNamespace>
+    <AssemblyName>SimpleCashRegister.DataAccessLayer</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

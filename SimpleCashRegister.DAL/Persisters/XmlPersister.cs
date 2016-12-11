@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace SimpleCashRegister.DAL.Persisters
+namespace SimpleCashRegister.DataAccessLayer.Persisters
 {
     public class XmlPersister<T> : IPersister<T>
     {

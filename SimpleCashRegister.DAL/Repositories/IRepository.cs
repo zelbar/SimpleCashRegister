@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleCashRegister.DAL.Repositories
+namespace SimpleCashRegister.DataAccessLayer.Repositories
 {
     interface IRepository<TId, TItem>
     {

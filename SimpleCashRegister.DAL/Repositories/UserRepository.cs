@@ -1,9 +1,9 @@
 ﻿using SimpleCashRegister.Model;
 using System;
 using System.Linq;
-using SimpleCashRegister.DAL.Persisters;
+using SimpleCashRegister.DataAccessLayer.Persisters;
 
-namespace SimpleCashRegister.DAL.Repositories
+namespace SimpleCashRegister.DataAccessLayer.Repositories
 {
     public class UserRepository : Repository<string, User>
     {

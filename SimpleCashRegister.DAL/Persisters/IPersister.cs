@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleCashRegister.DAL.Persisters
+namespace SimpleCashRegister.DataAccessLayer.Persisters
 {
     interface IPersister<T>
     {

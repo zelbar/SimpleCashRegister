@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using SimpleCashRegister.Model;
-using SimpleCashRegister.DAL;
-using SimpleCashRegister.DAL.Persisters;
-using SimpleCashRegister.DAL.Repositories;
+using SimpleCashRegister.DataAccessLayer;
+using SimpleCashRegister.DataAccessLayer.Persisters;
+using SimpleCashRegister.DataAccessLayer.Repositories;
 using SimpleCashRegister.Services;
 using SimpleCashRegister.PresentationLayer;
 using SimpleCashRegister.PresentationLayer.Commands;

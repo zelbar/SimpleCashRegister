@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SimpleCashRegister.DAL;
-using SimpleCashRegister.DAL.Repositories;
+using SimpleCashRegister.DataAccessLayer;
+using SimpleCashRegister.DataAccessLayer.Repositories;
 using SimpleCashRegister.Model;
 
 namespace SimpleCashRegister.Services

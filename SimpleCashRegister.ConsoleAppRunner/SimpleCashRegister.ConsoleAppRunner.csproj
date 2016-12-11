@@ -54,9 +54,9 @@
       <Project>{ccfb68d4-a41e-459e-86ce-d54dfe8049e0}</Project>
       <Name>SimpleCashRegister.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SimpleCashRegister.DAL\SimpleCashRegister.DAL.csproj">
+    <ProjectReference Include="..\SimpleCashRegister.DAL\SimpleCashRegister.DataAccessLayer.csproj">
       <Project>{04113a55-dd06-4a71-88e7-b6b14695563b}</Project>
-      <Name>SimpleCashRegister.DAL</Name>
+      <Name>SimpleCashRegister.DataAccessLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimpleCashRegister.Model\SimpleCashRegister.Model.csproj">
       <Project>{e0d3ea9e-46db-4d5a-aa16-065f224c0ec9}</Project>

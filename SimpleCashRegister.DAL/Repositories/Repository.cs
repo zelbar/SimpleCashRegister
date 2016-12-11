@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SimpleCashRegister.DAL.Persisters;
+using SimpleCashRegister.DataAccessLayer.Persisters;
 using SimpleCashRegister.Model;
 
-namespace SimpleCashRegister.DAL.Repositories
+namespace SimpleCashRegister.DataAccessLayer.Repositories
 {
     public class Repository<TId, TEntity> : IRepository<TId, TEntity>
         where TEntity : Entity<TId>

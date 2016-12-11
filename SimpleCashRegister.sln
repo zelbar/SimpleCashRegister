@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCashRegister", "Simpl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCashRegister.Model", "SimpleCashRegister.Model\SimpleCashRegister.Model.csproj", "{E0D3EA9E-46DB-4D5A-AA16-065F224C0EC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCashRegister.DAL", "SimpleCashRegister.DAL\SimpleCashRegister.DAL.csproj", "{04113A55-DD06-4A71-88E7-B6B14695563B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCashRegister.DataAccessLayer", "SimpleCashRegister.DAL\SimpleCashRegister.DataAccessLayer.csproj", "{04113A55-DD06-4A71-88E7-B6B14695563B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCashRegister.ConsoleAppRunner", "SimpleCashRegister.ConsoleAppRunner\SimpleCashRegister.ConsoleAppRunner.csproj", "{CD8503DA-D42E-48A0-8090-3FD7760BED23}"
 EndProject
